@@ -1,11 +1,13 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 ?>
 
 <header>
 
     <div class="logo">
-        🌸 FlowerShop
+        🌸 ERLISNA FLORIST
     </div>
 
     <nav>
@@ -18,22 +20,38 @@ session_start();
 
         <?php if(isset($_SESSION['id_pelanggan'])){ ?>
 
-            <a href="keranjang.php">Keranjang</a>
+            <a href="pelanggan/dashboard.php">
+                Dashboard
+            </a>
 
-            <a href="profil.php">
+            <a href="keranjang.php">
+                Keranjang
+            </a>
+
+            <a href="pelanggan/riwayat.php">
+                Pesanan Saya
+            </a>
+
+            <a href="pelanggan/profil.php">
                 <?= $_SESSION['nama']; ?>
             </a>
 
-            <a href="logout.php">Logout</a>
+            <a href="pelanggan/logout.php">
+                Logout
+            </a>
 
         <?php } else { ?>
 
-            <a href="pelanggan/login.php">
-                Login Pelanggan
+            <a href="login.php">
+                Login
+            </a>
+
+            <a href="register.php">
+                Register
             </a>
 
             <a href="admin/login.php">
-                Login Admin
+                Admin
             </a>
 
         <?php } ?>

@@ -8,15 +8,14 @@ INSERT INTO kategori(nama_kategori)
 VALUES('$_POST[nama]')
 ");
 
-header("location:kategori.php");
+header("Location:kategori.php");
 }
 ?>
 
 <form method="POST">
 
-<h2>Tambah Kategori</h2>
-
-<input type="text"
+<input
+type="text"
 name="nama"
 placeholder="Nama Kategori">
 

@@ -4,47 +4,39 @@ include "config/koneksi.php";
 
 if(!isset($_SESSION['id_pelanggan'])){
 
-    echo "
-    <script>
-    alert('Silahkan login terlebih dahulu');
-    window.location='pelanggan/login.php';
-    </script>";
-    exit;
-}
+echo "<script>
+alert('Silahkan login terlebih dahulu');
+window.location='login.php';
+</script>";
 
-/* TAMBAH KE KERANJANG */
+exit;
+}
 
 if(isset($_POST['beli'])){
 
-    $id_produk = $_POST['id_produk'];
-    $jumlah = $_POST['jumlah'];
+$id_produk = $_POST['id_produk'];
+$jumlah = $_POST['jumlah'];
 
-    if(isset($_SESSION['keranjang'][$id_produk])){
-
-        $_SESSION['keranjang'][$id_produk] += $jumlah;
-
-    }else{
-
-        $_SESSION['keranjang'][$id_produk] = $jumlah;
-    }
+$_SESSION['keranjang'][$id_produk] = $jumlah;
 }
-
-/* HAPUS ITEM */
 
 if(isset($_GET['hapus'])){
 
-    unset($_SESSION['keranjang'][$_GET['hapus']]);
+unset(
+$_SESSION['keranjang'][$_GET['hapus']]
+);
 
-    header("Location: keranjang.php");
+header("Location:keranjang.php");
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Keranjang Belanja</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<title>Keranjang</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <?php include "navbar.php"; ?>
@@ -53,33 +45,39 @@ if(isset($_GET['hapus'])){
 
 <h1>Keranjang Belanja</h1>
 
-<table class="table">
+<table class="cart-table">
 
 <tr>
-    <th>Gambar</th>
-    <th>Produk</th>
-    <th>Harga</th>
-    <th>Jumlah</th>
-    <th>Subtotal</th>
-    <th>Aksi</th>
+
+<th>Produk</th>
+<th>Harga</th>
+<th>Jumlah</th>
+<th>Subtotal</th>
+<th>Aksi</th>
+
 </tr>
 
 <?php
 
 $total = 0;
 
-if(!empty($_SESSION['keranjang'])){
+if(isset($_SESSION['keranjang'])){
 
-foreach($_SESSION['keranjang'] as $id_produk => $jumlah){
+foreach(
+$_SESSION['keranjang']
+as $id_produk => $jumlah
+){
 
 $data = mysqli_query($koneksi,"
-SELECT * FROM produk
+SELECT *
+FROM produk
 WHERE id_produk='$id_produk'
 ");
 
 $p = mysqli_fetch_assoc($data);
 
-$subtotal = $p['harga'] * $jumlah;
+$subtotal =
+$p['harga'] * $jumlah;
 
 $total += $subtotal;
 ?>
@@ -89,33 +87,32 @@ $total += $subtotal;
 <td>
 
 <img
-src="uploads/<?php echo $p['gambar']; ?>"
+src="uploads/<?= $p['gambar']; ?>"
 width="80">
 
+<br>
+
+<?= $p['nama_bunga']; ?>
+
 </td>
 
 <td>
-<?php echo $p['nama_bunga']; ?>
+Rp <?= number_format($p['harga']); ?>
 </td>
 
 <td>
-Rp <?php echo number_format($p['harga']); ?>
+<?= $jumlah; ?>
 </td>
 
 <td>
-<?php echo $jumlah; ?>
-</td>
-
-<td>
-Rp <?php echo number_format($subtotal); ?>
+Rp <?= number_format($subtotal); ?>
 </td>
 
 <td>
 
 <a
-href="keranjang.php?hapus=<?php echo $id_produk; ?>"
-onclick="return confirm('Hapus produk ini?')"
-class="btn-hapus">
+href="?hapus=<?= $id_produk; ?>"
+class="btn-delete">
 
 Hapus
 
@@ -126,43 +123,44 @@ Hapus
 </tr>
 
 <?php
-}
-}
+}}
 ?>
 
 <tr>
 
-<td colspan="4">
+<td colspan="3">
+
 <b>Total Belanja</b>
+
 </td>
 
 <td colspan="2">
+
 <b>
-Rp <?php echo number_format($total); ?>
+Rp <?= number_format($total); ?>
 </b>
+
 </td>
 
 </tr>
 
 </table>
 
-<div class="aksi-keranjang">
+<div class="cart-action">
 
-<a href="produk.php" class="btn-lanjut">
+<a href="produk.php"
+class="btn-secondary">
 
-← Lanjut Belanja
-
-</a>
-
-<?php if($total > 0){ ?>
-
-<a href="checkout.php" class="btn-checkout">
-
-Checkout →
+Lanjut Belanja
 
 </a>
 
-<?php } ?>
+<a href="checkout.php"
+class="btn-primary">
+
+Checkout
+
+</a>
 
 </div>
 

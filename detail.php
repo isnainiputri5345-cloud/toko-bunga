@@ -5,7 +5,8 @@ include "config/koneksi.php";
 $id = $_GET['id'];
 
 $query = mysqli_query($koneksi,"
-SELECT * FROM produk
+SELECT *
+FROM produk
 WHERE id_produk='$id'
 ");
 
@@ -15,80 +16,80 @@ $p = mysqli_fetch_assoc($query);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Detail Produk</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<title><?= $p['nama_bunga']; ?></title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <?php include "navbar.php"; ?>
 
 <div class="detail-container">
 
-    <div class="detail-gambar">
-        <img src="uploads/<?php echo $p['gambar']; ?>">
-    </div>
+<div class="detail-image">
 
-    <div class="detail-info">
+<img src="uploads/<?= $p['gambar']; ?>">
 
-        <h1><?php echo $p['nama_bunga']; ?></h1>
+</div>
 
-        <h2>
-            Rp <?php echo number_format($p['harga']); ?>
-        </h2>
+<div class="detail-content">
 
-        <p>
-            Stok : <?php echo $p['stok']; ?>
-        </p>
+<h1><?= $p['nama_bunga']; ?></h1>
 
-        <hr>
+<h2>
+Rp <?= number_format($p['harga']); ?>
+</h2>
 
-        <p>
-            <?php echo nl2br($p['deskripsi']); ?>
-        </p>
+<p>
+<?= nl2br($p['deskripsi']); ?>
+</p>
 
-        <br>
+<p>
+<b>Stok :</b>
+<?= $p['stok']; ?>
+</p>
 
-        <?php if(isset($_SESSION['id_pelanggan'])){ ?>
+<?php if(isset($_SESSION['id_pelanggan'])){ ?>
 
-            <form action="keranjang.php" method="POST">
+<form method="POST"
+action="keranjang.php">
 
-                <input
-                    type="hidden"
-                    name="id_produk"
-                    value="<?php echo $p['id_produk']; ?>">
+<input
+type="hidden"
+name="id_produk"
+value="<?= $p['id_produk']; ?>">
 
-                <label>Jumlah :</label>
+<label>Jumlah</label>
 
-                <input
-                    type="number"
-                    name="jumlah"
-                    value="1"
-                    min="1"
-                    max="<?php echo $p['stok']; ?>"
-                    required>
+<input
+type="number"
+name="jumlah"
+value="1"
+min="1"
+max="<?= $p['stok']; ?>">
 
-                <button
-                    type="submit"
-                    name="beli"
-                    class="btn-pesan">
+<button
+type="submit"
+name="beli">
 
-                    Tambah ke Keranjang
+Tambah ke Keranjang
 
-                </button>
+</button>
 
-            </form>
+</form>
 
-        <?php } else { ?>
+<?php }else{ ?>
 
-            <a href="pelanggan/login.php" class="btn-login">
+<a href="login.php"
+class="btn-login">
 
-                Login Untuk Memesan
+Login Untuk Memesan
 
-            </a>
+</a>
 
-        <?php } ?>
+<?php } ?>
 
-    </div>
+</div>
 
 </div>
 

@@ -2,25 +2,44 @@
 include "../config/koneksi.php";
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Produk</title>
+
+<link rel="stylesheet"
+href="../assets/css/admin.css">
+
+</head>
+
+<body>
+
 <?php include "sidebar.php"; ?>
 
 <div class="content">
 
-<h2>Data Produk</h2>
+<h1>Data Produk</h1>
 
-<a href="tambah_produk.php">
+<a
+href="tambah_produk.php"
+class="btn">
+
 Tambah Produk
+
 </a>
 
 <table>
 
 <tr>
-<th>Gambar</th>
+
+<th>Foto</th>
 <th>Nama</th>
 <th>Kategori</th>
 <th>Harga</th>
 <th>Stok</th>
 <th>Aksi</th>
+
 </tr>
 
 <?php
@@ -29,7 +48,8 @@ $data=mysqli_query($koneksi,"
 SELECT *
 FROM produk
 JOIN kategori
-ON produk.id_kategori=kategori.id_kategori
+ON produk.id_kategori=
+kategori.id_kategori
 ");
 
 while($d=mysqli_fetch_array($data)){
@@ -38,8 +58,9 @@ while($d=mysqli_fetch_array($data)){
 <tr>
 
 <td>
-<img src="../uploads/<?= $d['gambar']; ?>"
-width="80">
+<img
+src="../uploads/<?= $d['gambar']; ?>"
+width="70">
 </td>
 
 <td><?= $d['nama_bunga']; ?></td>
@@ -73,3 +94,6 @@ Hapus
 </table>
 
 </div>
+
+</body>
+</html>

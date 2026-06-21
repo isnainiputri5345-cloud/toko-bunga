@@ -8,7 +8,7 @@ SELECT * FROM kategori
 WHERE id_kategori='$id'
 ");
 
-$d=mysqli_fetch_array($data);
+$d=mysqli_fetch_assoc($data);
 
 if(isset($_POST['update'])){
 
@@ -18,13 +18,14 @@ SET nama_kategori='$_POST[nama]'
 WHERE id_kategori='$id'
 ");
 
-header("location:kategori.php");
+header("Location:kategori.php");
 }
 ?>
 
 <form method="POST">
 
-<input type="text"
+<input
+type="text"
 name="nama"
 value="<?= $d['nama_kategori']; ?>">
 

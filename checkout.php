@@ -1,20 +1,105 @@
 <?php
-
 session_start();
+include "config/koneksi.php";
 
 if(!isset($_SESSION['id_pelanggan'])){
 
-echo "<script>
-alert('Silahkan login terlebih dahulu');
-window.location='pelanggan/login.php';
-</script>";
-
+header("Location:login.php");
 exit;
 }
-?>
 
-<?php
-session_start();
+$id_pelanggan =
+$_SESSION['id_pelanggan'];
+
+$data = mysqli_query($koneksi,"
+SELECT *
+FROM pelanggan
+WHERE id_pelanggan='$id_pelanggan'
+");
+
+$pelanggan =
+mysqli_fetch_assoc($data);
+
+$total = 0;
+
+if(isset($_SESSION['keranjang'])){
+
+foreach(
+$_SESSION['keranjang']
+as $id_produk=>$jumlah
+){
+
+$produk = mysqli_fetch_assoc(
+mysqli_query(
+$koneksi,
+"SELECT * FROM produk
+WHERE id_produk='$id_produk'"
+));
+
+$total +=
+$produk['harga'] * $jumlah;
+
+}
+}
+
+if(isset($_POST['checkout'])){
+
+$tanggal = date('Y-m-d H:i:s');
+
+mysqli_query($koneksi,"
+INSERT INTO pesanan(
+id_pelanggan,
+tanggal,
+total,
+status
+)
+VALUES(
+'$id_pelanggan',
+'$tanggal',
+'$total',
+'Menunggu'
+)
+");
+
+$id_pesanan =
+mysqli_insert_id($koneksi);
+
+foreach(
+$_SESSION['keranjang']
+as $id_produk=>$jumlah
+){
+
+$produk = mysqli_fetch_assoc(
+mysqli_query(
+$koneksi,
+"SELECT * FROM produk
+WHERE id_produk='$id_produk'"
+));
+
+$subtotal =
+$produk['harga'] * $jumlah;
+
+mysqli_query($koneksi,"
+INSERT INTO detail_pesanan(
+id_pesanan,
+id_produk,
+jumlah,
+subtotal
+)
+VALUES(
+'$id_pesanan',
+'$id_produk',
+'$jumlah',
+'$subtotal'
+)
+");
+
+}
+
+unset($_SESSION['keranjang']);
+
+header("Location:selesai.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,30 +111,44 @@ session_start();
 
 <body>
 
+<?php include "navbar.php"; ?>
+
 <div class="checkout-box">
 
 <h1>Checkout Pesanan</h1>
 
-<form action="selesai.php" method="POST">
+<form method="POST">
 
-<input type="text"
-name="nama"
-placeholder="Nama Lengkap"
-required>
+<label>Nama</label>
 
-<input type="text"
-name="telepon"
-placeholder="No HP"
-required>
+<input
+type="text"
+value="<?= $pelanggan['nama']; ?>"
+readonly>
 
-<textarea
-name="alamat"
-placeholder="Alamat Lengkap"
-required>
+<label>Telepon</label>
+
+<input
+type="text"
+value="<?= $pelanggan['telepon']; ?>"
+readonly>
+
+<label>Alamat</label>
+
+<textarea readonly>
+<?= $pelanggan['alamat']; ?>
 </textarea>
 
-<button type="submit">
+<h2>
+Total :
+Rp <?= number_format($total); ?>
+</h2>
+
+<button
+name="checkout">
+
 Buat Pesanan
+
 </button>
 
 </form>

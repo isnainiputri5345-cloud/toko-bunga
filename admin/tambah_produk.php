@@ -1,9 +1,10 @@
 <?php
+
 include "../config/koneksi.php";
 
 if(isset($_POST['simpan'])){
 
-$gambar=$_FILES['gambar']['name'];
+$gambar = $_FILES['gambar']['name'];
 
 move_uploaded_file(
 $_FILES['gambar']['tmp_name'],
@@ -29,6 +30,6 @@ VALUES(
 )
 ");
 
-header("location:produk.php");
+header("Location:produk.php");
 }
 ?>

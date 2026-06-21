@@ -1,28 +1,58 @@
 <?php
+
 include "../config/koneksi.php";
 
 $data=mysqli_query($koneksi,"
 SELECT *
 FROM pesanan
-WHERE status='Selesai'
+WHERE status='Menunggu'
 ");
 
 $total=0;
 
 while($d=mysqli_fetch_array($data)){
+
 $total += $d['total'];
+
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Laporan</title>
+
+<link rel="stylesheet"
+href="../assets/css/admin.css">
+
+</head>
+
+<body>
 
 <?php include "sidebar.php"; ?>
 
 <div class="content">
 
-<h2>Laporan Penjualan</h2>
+<h1>Laporan Penjualan</h1>
 
-<h3>
-Total Pendapatan :
+<div class="laporan-box">
+
+<h2>
+
+Total Pendapatan
+
+</h2>
+
+<h1>
+
 Rp <?= number_format($total); ?>
-</h3>
+
+</h1>
 
 </div>
+
+</div>
+
+</body>
+</html>

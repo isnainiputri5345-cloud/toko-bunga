@@ -9,4 +9,6 @@ DELETE FROM kategori
 WHERE id_kategori='$id'
 ");
 
-header("location:kategori.php");
+header("Location:kategori.php");
+
+?>

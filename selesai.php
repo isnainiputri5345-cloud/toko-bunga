@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-unset($_SESSION['keranjang']);
 ?>
 
 <!DOCTYPE html>
@@ -13,17 +11,23 @@ unset($_SESSION['keranjang']);
 
 <body>
 
-<div class="sukses">
+<div class="success-box">
 
-<h1>✅ Pesanan Berhasil</h1>
+<h1>
+🎉 Pesanan Berhasil
+</h1>
 
 <p>
-Terima kasih telah berbelanja
-di Toko Bunga Kami.
+
+Terima kasih telah melakukan
+pemesanan di Erlisna Florist.
+
 </p>
 
-<a href="index.php">
-Kembali Belanja
+<a href="produk.php">
+
+Belanja Lagi
+
 </a>
 
 </div>
