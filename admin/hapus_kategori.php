@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['admin'])){
+    header("Location:login.php");
+    exit;
+}
 
 include "../config/koneksi.php";
 
@@ -10,5 +16,5 @@ WHERE id_kategori='$id'
 ");
 
 header("Location:kategori.php");
-
+exit;
 ?>

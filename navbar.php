@@ -2,6 +2,10 @@
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
+// Tentukan base path berdasarkan lokasi berkas saat ini
+$is_pelanggan_dir = basename(dirname($_SERVER['SCRIPT_NAME'])) == 'pelanggan';
+$base_root = $is_pelanggan_dir ? '../' : './';
+$base_pelanggan = $is_pelanggan_dir ? './' : 'pelanggan/';
 ?>
 
 <header>
@@ -12,45 +16,45 @@ if(session_status() == PHP_SESSION_NONE){
 
     <nav>
 
-        <a href="index.php">Beranda</a>
+        <a href="<?= $base_root; ?>index.php">Beranda</a>
 
-        <a href="produk.php">Produk</a>
+        <a href="<?= $base_root; ?>produk.php">Produk</a>
 
-        <a href="tentang.php">Tentang Kami</a>
+        <a href="<?= $base_root; ?>tentang.php">Tentang Kami</a>
 
         <?php if(isset($_SESSION['id_pelanggan'])){ ?>
 
-            <a href="pelanggan/dashboard.php">
+            <a href="<?= $base_pelanggan; ?>dashboard.php">
                 Dashboard
             </a>
 
-            <a href="keranjang.php">
+            <a href="<?= $base_root; ?>keranjang.php">
                 Keranjang
             </a>
 
-            <a href="pelanggan/riwayat.php">
+            <a href="<?= $base_pelanggan; ?>riwayat.php">
                 Pesanan Saya
             </a>
 
-            <a href="pelanggan/profil.php">
+            <a href="<?= $base_pelanggan; ?>profil.php">
                 <?= $_SESSION['nama']; ?>
             </a>
 
-            <a href="pelanggan/logout.php">
+            <a href="<?= $base_pelanggan; ?>logout.php">
                 Logout
             </a>
 
         <?php } else { ?>
 
-            <a href="login.php">
+            <a href="<?= $base_pelanggan; ?>login.php">
                 Login
             </a>
 
-            <a href="register.php">
+            <a href="<?= $base_pelanggan; ?>register.php">
                 Register
             </a>
 
-            <a href="admin/login.php">
+            <a href="<?= $base_root; ?>admin/login.php">
                 Admin
             </a>
 

@@ -1,11 +1,16 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['admin'])){
+    header("Location:login.php");
+    exit;
+}
 
 include "../config/koneksi.php";
 
 $data=mysqli_query($koneksi,"
 SELECT *
 FROM pesanan
-WHERE status='Menunggu'
 ");
 
 $total=0;

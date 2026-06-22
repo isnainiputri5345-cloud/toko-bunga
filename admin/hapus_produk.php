@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['admin'])){
+    header("Location:login.php");
+    exit;
+}
 
 include "../config/koneksi.php";
 
@@ -9,4 +15,6 @@ DELETE FROM produk
 WHERE id_produk='$id'
 ");
 
-header("location:produk.php");
+header("Location:produk.php");
+exit;
+?>

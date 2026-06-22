@@ -6,7 +6,7 @@ if(!isset($_SESSION['id_pelanggan'])){
 
 echo "<script>
 alert('Silahkan login terlebih dahulu');
-window.location='login.php';
+window.location='pelanggan/login.php';
 </script>";
 
 exit;

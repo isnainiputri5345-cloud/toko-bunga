@@ -4,7 +4,7 @@ include "config/koneksi.php";
 
 if(!isset($_SESSION['id_pelanggan'])){
 
-header("Location:login.php");
+header("Location:pelanggan/login.php");
 exit;
 }
 

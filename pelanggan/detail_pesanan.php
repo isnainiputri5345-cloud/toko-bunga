@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['id_pelanggan'])){
+    header("Location:login.php");
+    exit;
+}
+
 include "../config/koneksi.php";
 
 $id=$_GET['id'];

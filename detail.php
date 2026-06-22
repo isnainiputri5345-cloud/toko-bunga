@@ -80,7 +80,7 @@ Tambah ke Keranjang
 
 <?php }else{ ?>
 
-<a href="login.php"
+<a href="pelanggan/login.php"
 class="btn-login">
 
 Login Untuk Memesan
