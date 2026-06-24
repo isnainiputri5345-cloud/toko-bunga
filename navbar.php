@@ -10,7 +10,7 @@ $base_pelanggan = $is_pelanggan_dir ? './' : 'pelanggan/';
 
 <header>
 
-    <div class="logo">
+    <div class="logo" img src="<?= $base_root; ?>assets/images/logo.png" alt="logo" width: 100px;>
         🌸 ERLISNA FLORIST
     </div>
 

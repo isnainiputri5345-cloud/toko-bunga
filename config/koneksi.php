@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "toko_bunga";
+$db   = "erlisna_florist";
 
 $koneksi = mysqli_connect(
 $host,

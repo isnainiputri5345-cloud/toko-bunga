@@ -1,3 +1,4 @@
+```php
 <?php
 include "config/koneksi.php";
 
@@ -8,28 +9,50 @@ ORDER BY id_produk DESC
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<title>Toko Bunga Online</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erlisna Florist</title>
 
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
 <body>
 
 <header>
-    <div class="logo">🌸 Toko Bunga</div>
+
+    <div class="logo">
+        <img src="assets/images/logo.png" alt="Logo">
+        <h2>ERLISNA FLORIST</h2>
+    </div>
 
     <nav>
-        <a href="index.php">Home</a>
+        <a href="index.php">Beranda</a>
+        <a href="produk.php">Produk</a>
         <a href="keranjang.php">Keranjang</a>
+        <a href="tentang.php">Tentang Kami</a>
         <a href="pelanggan/login.php">Login</a>
     </nav>
+
 </header>
 
 <section class="hero">
-    <h1>Bunga Segar Untuk Orang Tersayang</h1>
-    <p>Pesan bunga dengan mudah dan cepat</p>
+
+<div class="hero-content">
+
+<img src="assets/images/logo.png"
+class="hero-logo">
+
+<h1>Bunga Segar Untuk Orang Tersayang</h1>
+
+<p>Pesan bunga dengan mudah dan cepat</p>
+
+</div>
+
 </section>
+
+<section class="produk-section">
 
 <div class="container">
 
@@ -37,17 +60,25 @@ ORDER BY id_produk DESC
 
 <div class="card">
 
-<img src="uploads/<?= $p['gambar']; ?>">
+    <?php if(!empty($p['gambar'])){ ?>
+        <img src="assets/images/<?= $p['gambar']; ?>" alt="<?= $p['nama_bunga']; ?>">
+    <?php }else{ ?>
+        <img src="assets/images/logo.png" alt="Produk">
+    <?php } ?>
 
-<h3><?= $p['nama_bunga']; ?></h3>
+    <div class="card-body">
 
-<h4>
-Rp <?= number_format($p['harga']); ?>
-</h4>
+        <h3><?= $p['nama_bunga']; ?></h3>
 
-<a href="detail.php?id=<?= $p['id_produk']; ?>">
-Lihat Detail
-</a>
+        <h4>
+            Rp <?= number_format($p['harga'],0,",","."); ?>
+        </h4>
+
+        <a href="detail.php?id=<?= $p['id_produk']; ?>">
+            Lihat Detail
+        </a>
+
+    </div>
 
 </div>
 
@@ -55,5 +86,8 @@ Lihat Detail
 
 </div>
 
+</section>
+
 </body>
 </html>
+```
