@@ -280,7 +280,6 @@ body {
     display: none;
 }
 
-
 .video-container {
     display: none;
     text-align: center;
@@ -569,6 +568,10 @@ canvas {
         </div>
     </div>
 
+    <!-- Action Buttons -->
+    <div class="action-buttons-section">
+        <a href="edit_profil.php" class="btn btn-primary">✎ Edit Profil Lengkap</a>
+        <a href="../index.php" class="btn btn-secondary">← Kembali</a>
     </div>
 </div>
 

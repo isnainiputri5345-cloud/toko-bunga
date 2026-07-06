@@ -1,93 +1,104 @@
-```php
 <?php
+session_start();
 include "config/koneksi.php";
+
+$cari = $_GET['cari'] ?? '';
+$where = "";
+if($cari!=""){
+    $c = mysqli_real_escape_string($koneksi,$cari);
+    $where = "WHERE nama_bunga LIKE '%$c%'";
+}
 
 $produk = mysqli_query($koneksi,"
 SELECT * FROM produk
+$where
 ORDER BY id_produk DESC
+LIMIT 8
 ");
+
+include "include/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Erlisna Florist</title>
-
-<link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-<body>
-
-<header>
-
-    <div class="logo">
-        <img src="assets/images/logo.png" alt="Logo">
-        <h2>ERLISNA FLORIST</h2>
-    </div>
-
-    <nav>
-        <a href="index.php">Beranda</a>
-        <a href="produk.php">Produk</a>
-        <a href="keranjang.php">Keranjang</a>
-        <a href="tentang.php">Tentang Kami</a>
-        <a href="pelanggan/login.php">Login</a>
-    </nav>
-
-</header>
-
 <section class="hero">
-
-<div class="hero-content">
-
-<img src="assets/images/logo.png"
-class="hero-logo">
-
-<h1>Bunga Segar Untuk Orang Tersayang</h1>
-
-<p>Pesan bunga dengan mudah dan cepat</p>
-
-</div>
-
-</section>
-
-<section class="produk-section">
-
-<div class="container">
-
-<?php while($p=mysqli_fetch_array($produk)){ ?>
-
-<div class="card">
-
-    <?php if(!empty($p['gambar'])){ ?>
-        <img src="assets/images/<?= $p['gambar']; ?>" alt="<?= $p['nama_bunga']; ?>">
-    <?php }else{ ?>
-        <img src="assets/images/logo.png" alt="Produk">
-    <?php } ?>
-
-    <div class="card-body">
-
-        <h3><?= $p['nama_bunga']; ?></h3>
-
-        <h4>
-            Rp <?= number_format($p['harga'],0,",","."); ?>
-        </h4>
-
-        <a href="detail.php?id=<?= $p['id_produk']; ?>">
-            Lihat Detail
-        </a>
-
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <h1>Fresh Flowers For Every Moment</h1>
+            <p>Rangkaian bunga segar untuk wisuda, ulang tahun, pernikahan, dan momen spesial lainnya.</p>
+            <a href="produk.php" class="btn-primary">Belanja Sekarang</a>
+        </div>
+        <div class="hero-image">
+            <img src="assets/images/banner.png" alt="Banner">
+        </div>
     </div>
-
-</div>
-
-<?php } ?>
-
-</div>
-
 </section>
 
-</body>
-</html>
-```
+<section class="section">
+<div class="container">
+<div class="section-title">
+<h2>Produk Terbaru</h2>
+<p>Koleksi bunga pilihan Erlisna Florist</p>
+</div>
+
+<div class="product-grid">
+<?php while($p=mysqli_fetch_assoc($produk)){ ?>
+<div class="card">
+<img src="assets/images/<?= !empty($p['gambar'])?$p['gambar']:'logo.png'; ?>" alt="">
+<div class="card-body">
+<span class="badge">Ready</span>
+<h3><?= htmlspecialchars($p['nama_bunga']); ?></h3>
+<div class="price">Rp <?= number_format($p['harga'],0,",","."); ?></div>
+<a class="btn-primary" href="detail.php?id=<?= $p['id_produk']; ?>">Lihat Detail</a>
+</div>
+</div>
+<?php } ?>
+</div>
+</div>
+</section>
+
+<section class="about">
+<div class="container about-grid">
+<div>
+<img src="assets/images/toko.jpg" alt="Tentang Kami">
+</div>
+<div>
+<h2>Tentang Erlisna Florist</h2>
+<p>Kami menyediakan berbagai rangkaian bunga segar berkualitas untuk berbagai acara spesial.</p>
+<ul>
+<li>Bunga segar berkualitas</li>
+<li>Harga terjangkau</li>
+<li>Desain eksklusif</li>
+<li>Pengiriman cepat</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="section-title">
+<h2>Testimoni</h2>
+</div>
+<div class="testimonial-grid">
+<div class="testimonial">
+<img src="assets/images/user1.png">
+<div class="stars">★★★★★</div>
+<p>"Bunganya sangat cantik dan segar."</p>
+<strong>Salsa</strong>
+</div>
+<div class="testimonial">
+<img src="assets/images/user2.png">
+<div class="stars">★★★★★</div>
+<p>"Pelayanan cepat dan ramah."</p>
+<strong>Rina</strong>
+</div>
+<div class="testimonial">
+<img src="assets/images/user3.png">
+<div class="stars">★★★★★</div>
+<p>"Sangat puas dengan hasil bouquet."</p>
+<strong>Dewi</strong>
+</div>
+</div>
+</div>
+</section>
+
+<?php include "include/footer.php"; ?>

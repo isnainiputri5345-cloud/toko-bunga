@@ -1,7 +1,18 @@
-```css
-/* ===================================
-   ERLISNA FLORIST STYLE.CSS
-=================================== */
+/* =====================================================
+   ERLISNA FLORIST - STYLE.CSS (PART 1)
+   Modern Pink Theme
+===================================================== */
+
+:root{
+    --primary:#ff4f94;
+    --primary-dark:#e63d81;
+    --secondary:#fff5f8;
+    --text:#333;
+    --gray:#777;
+    --white:#fff;
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+    --radius:18px;
+}
 
 *{
     margin:0;
@@ -10,463 +21,623 @@
     font-family:'Segoe UI',sans-serif;
 }
 
+html{scroll-behavior:smooth;}
+
 body{
-    background:#f3f3f3;
-    color:#333;
+    background:#fafafa;
+    color:var(--text);
+    line-height:1.6;
 }
 
-/* ===================================
-   HEADER
-=================================== */
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{text-decoration:none;}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
 
 header{
-    background:#ff4f94;
-    padding:15px 80px;
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
 
+.topbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    padding:18px 0;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:15px;
 }
 
 .logo img{
     width:70px;
     height:70px;
-    border-radius:50%;
-    background:white;
+    object-fit:contain;
 }
 
 .logo h2{
-    color:white;
-    font-size:22px;
+    color:var(--primary);
+    font-size:28px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:30px;
-    font-size:18px;
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav>a{
+    color:#444;
     font-weight:600;
+    transition:.3s;
 }
 
-nav a:hover{
-    opacity:.8;
+nav>a:hover{
+    color:var(--primary);
 }
 
-/* ===================================
-   HERO
-=================================== */
+.dropdown{
+    position:relative;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:35px;
+    left:0;
+    min-width:220px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px 18px;
+    color:#444;
+}
+
+.dropdown-content a:hover{
+    background:var(--secondary);
+    color:var(--primary);
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    background:#f5f5f5;
+    border-radius:40px;
+    overflow:hidden;
+    width:300px;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    background:transparent;
+    padding:12px 16px;
+    outline:none;
+}
+
+.search-box button{
+    border:none;
+    background:var(--primary);
+    color:#fff;
+    padding:12px 18px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
 
 .hero{
-    height:430px;
+    background:linear-gradient(135deg,#ffe5ef,#fff);
+    padding:70px 0;
+}
 
-    background:
-    linear-gradient(
-    rgba(255,255,255,.25),
-    rgba(255,255,255,.25)),
-    url('../images/bg-web.jpg');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    display:flex;
-    justify-content:center;
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
     align-items:center;
-    text-align:center;
-}
-
-.hero-content{
-    width:100%;
-}
-
-.hero-logo{
-    width:140px;
-    height:140px;
-    object-fit:contain;
-    margin-bottom:15px;
+    gap:60px;
 }
 
 .hero h1{
-    color:#ff4f94;
-    font-size:48px;
-    font-weight:700;
+    font-size:54px;
+    color:var(--primary);
+    margin-bottom:20px;
 }
 
 .hero p{
-    color:#555;
-    font-size:22px;
+    font-size:20px;
+    color:#666;
+    margin-bottom:30px;
 }
 
-/* ===================================
-   PRODUK BERANDA
-=================================== */
+.btn-primary{
+    display:inline-block;
+    background:var(--primary);
+    color:#fff;
+    padding:15px 35px;
+    border-radius:40px;
+    transition:.3s;
+}
 
-.container{
-    width:90%;
-    margin:40px auto;
+.btn-primary:hover{
+    background:var(--primary-dark);
+    transform:translateY(-3px);
+}
 
+.hero-image img{
+    border-radius:30px;
+    box-shadow:var(--shadow);
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:80px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    color:var(--primary);
+    font-size:40px;
+}
+
+.section-title p{
+    color:#777;
+}
+
+/* ================= PRODUCT CARD ================= */
+
+.product-grid{
     display:grid;
-    grid-template-columns:
-    repeat(5,1fr);
-
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
 }
 
 .card{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:contain;
-    padding:10px;
     background:#fff;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
+    border-radius:var(--radius);
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    box-shadow:var(--shadow);
     transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-8px);
 }
 
-.card h3{
-    padding:15px;
-    min-height:80px;
-    font-size:18px;
-    line-height:1.4;
-}
-
-.card h4{
-    padding:0 15px 20px;
-    color:#ff4f94;
-    font-size:24px;
-}
-
-.card a{
-    display:block;
-    background:#ff4f94;
-    color:white;
-    text-decoration:none;
-    text-align:center;
-    padding:16px;
-    font-size:18px;
-    font-weight:600;
-}
-
-.card a:hover{
-    background:#ff2c7d;
-}
-
-/* ===================================
-   HALAMAN PRODUK
-=================================== */
-
-.page-header{
-    text-align:center;
-    padding:40px;
-}
-
-.produk-container{
-    width:95%;
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-    padding-bottom:40px;
-}
-
-.produk-card{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.produk-card img{
+.card img{
+    height:250px;
+    object-fit:cover;
     width:100%;
-    height:240px;
-    object-fit:contain;
-    padding:15px;
 }
 
-.produk-body{
+.card-body{
     padding:20px;
 }
 
-.produk-body h3{
+.badge{
+    display:inline-block;
+    background:#ffe0ec;
+    color:var(--primary);
+    padding:5px 12px;
+    border-radius:30px;
+    font-size:13px;
     margin-bottom:10px;
 }
 
-.produk-body h4{
-    color:#ff4f94;
+.card h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.price{
+    color:var(--primary);
+    font-size:24px;
+    font-weight:bold;
     margin-bottom:15px;
 }
 
-.produk-body a{
-    display:block;
-    text-align:center;
-    background:#ff4f94;
-    color:white;
-    text-decoration:none;
-    padding:12px;
-    border-radius:8px;
-}
-
-/* ===================================
-   DETAIL PRODUK
-=================================== */
-
-.detail-container{
-    width:90%;
-    margin:40px auto;
-    background:white;
-    border-radius:15px;
-    padding:30px;
-
-    display:flex;
-    gap:40px;
-}
-
-.detail-image img,
-.detail-gambar img{
-    width:450px;
-    border-radius:10px;
-    object-fit:cover;
-}
-
-.detail-content,
-.detail-info{
-    flex:1;
-}
-
-.detail-content h2,
-.detail-info h2{
-    color:#ff4f94;
-    margin:15px 0;
-}
-
-.detail-info input[type=number]{
-    width:80px;
-    padding:10px;
-}
-
-/* ===================================
-   BUTTON
-=================================== */
-
-.btn,
-.btn-primary,
-.btn-login,
-.btn-pesan{
-    display:inline-block;
-    background:#ff4f94;
-    color:white;
-    padding:12px 25px;
-    text-decoration:none;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.btn-secondary{
-    background:#777;
-    color:white;
-    padding:12px 25px;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-.btn-hapus,
-.btn-delete{
-    background:#e74c3c;
-    color:white;
-    padding:8px 12px;
-    text-decoration:none;
-    border-radius:5px;
-}
-
-/* ===================================
-   TABEL
-=================================== */
-
-table,
-.table,
-.cart-table{
+.card .btn-primary{
     width:100%;
-    background:white;
-    border-collapse:collapse;
-}
-
-table th,
-.table th,
-.cart-table th{
-    background:#ff4f94;
-    color:white;
-    padding:15px;
-}
-
-table td,
-.table td,
-.cart-table td{
-    border:1px solid #ddd;
-    padding:15px;
-}
-
-/* ===================================
-   KERANJANG
-=================================== */
-
-.aksi-keranjang,
-.cart-action{
-    margin-top:20px;
-    display:flex;
-    justify-content:space-between;
-}
-
-.btn-lanjut{
-    background:#3498db;
-    color:white;
-    padding:12px 20px;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-.btn-checkout{
-    background:#2ecc71;
-    color:white;
-    padding:12px 20px;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-/* ===================================
-   CHECKOUT
-=================================== */
-
-.checkout-box{
-    width:600px;
-    margin:50px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-}
-
-.checkout-box input,
-.checkout-box textarea{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:1px solid #ddd;
-    border-radius:5px;
-}
-
-.checkout-box button{
-    width:100%;
-    padding:15px;
-    border:none;
-    background:#ff4f94;
-    color:white;
-    border-radius:8px;
-}
-
-/* ===================================
-   ABOUT / PROFILE / SUCCESS
-=================================== */
-
-.about-section,
-.profile-box,
-.success-box,
-.sukses{
-    width:800px;
-    margin:50px auto;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-}
-
-.success-box,
-.sukses{
     text-align:center;
 }
 
-.success-box a,
-.sukses a{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#ff4f94;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+
+/* ================= PROMO ================= */
+.promo-grid,.testimonial-grid,.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
 }
-
-/* ===================================
-   RESPONSIVE
-=================================== */
-
+.promo-card{
+background:#fff;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+overflow:hidden;
+position:relative;
+transition:.3s;
+}
+.promo-card:hover{transform:translateY(-8px);}
+.discount{
+position:absolute;
+top:15px;left:15px;
+background:#ff4f94;color:#fff;
+padding:8px 14px;border-radius:30px;font-weight:bold;
+}
+.old-price{text-decoration:line-through;color:#888;}
+.new-price{color:#ff4f94;font-size:28px;font-weight:bold;}
+/* ================= BEST SELLER ================= */
+.best-seller .card::before{
+content:"★ Terlaris";
+position:absolute;
+background:#ffd54f;
+padding:8px 12px;
+border-radius:0 0 12px 0;
+font-size:13px;
+font-weight:bold;
+}
+/* ================= TESTIMONI ================= */
+.testimonial{
+background:#fff;
+padding:30px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+text-align:center;
+}
+.testimonial img{
+width:90px;height:90px;border-radius:50%;
+margin:auto;margin-bottom:15px;
+object-fit:cover;
+}
+.stars{color:#ffc107;font-size:22px;margin:10px 0;}
+/* ================= ABOUT ================= */
+.about{
+background:#fff5f8;
+padding:80px 0;
+}
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+.about ul{margin-top:20px;}
+.about li{
+list-style:none;
+margin:12px 0;
+font-size:18px;
+}
+.about li::before{
+content:"✔";
+color:#ff4f94;
+margin-right:10px;
+}
+/* ================= CONTACT ================= */
+.contact-box{
+background:#fff;
+padding:35px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+.contact-box input,
+.contact-box textarea{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+}
+.contact-box button{
+background:#ff4f94;
+color:#fff;
+padding:14px 25px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+/* ================= FOOTER ================= */
+footer{
+background:#222;
+color:#fff;
+padding:60px 0 20px;
+}
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:35px;
+}
+footer h3{margin-bottom:20px;color:#ff82b4;}
+footer a{
+display:block;
+color:#ddd;
+margin:10px 0;
+}
+footer a:hover{color:#fff;}
+.copyright{
+text-align:center;
+border-top:1px solid rgba(255,255,255,.1);
+margin-top:40px;
+padding-top:20px;
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width:992px){
+.hero-grid,.about-grid{grid-template-columns:1fr;}
+.topbar{flex-direction:column;gap:20px;}
+nav{flex-wrap:wrap;justify-content:center;}
+.search-box{width:100%;}
+}
 @media(max-width:768px){
+.hero h1{font-size:36px;}
+.section-title h2{font-size:30px;}
+.logo h2{font-size:22px;}
+}
 
-    header{
-        flex-direction:column;
-        padding:20px;
-    }
 
-    nav{
-        margin-top:15px;
-    }
+.header-icon{
 
-    nav a{
-        display:inline-block;
-        margin:8px;
-    }
+display:flex;
 
-    .hero{
-        height:350px;
-    }
+align-items:center;
 
-    .hero-logo{
-        width:120px;
-    }
+gap:18px;
 
-    .hero h1{
-        font-size:35px;
-    }
+}
 
-    .hero p{
-        font-size:18px;
-    }
+.header-icon a{
 
-    .detail-container{
-        flex-direction:column;
-    }
+color:#444;
 
-    .detail-image img,
-    .detail-gambar img{
-        width:100%;
-    }
+font-weight:600;
 
-    .checkout-box,
-    .profile-box,
-    .about-section,
-    .success-box,
-    .sukses{
-        width:95%;
-    }
+position:relative;
+
+}
+
+.header-icon i{
+
+font-size:22px;
+
+}
+
+.header-icon span{
+
+position:absolute;
+
+top:-8px;
+
+right:-10px;
+
+background:#ff4f94;
+
+color:white;
+
+width:20px;
+
+height:20px;
+
+border-radius:50%;
+
+font-size:12px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.login-btn,
+.register-btn,
+.admin-btn{
+
+padding:10px 20px;
+
+border-radius:30px;
+
+background:#ff4f94;
+
+color:white !important;
+
+transition:.3s;
+
+}
+
+.login-btn:hover,
+.register-btn:hover,
+.admin-btn:hover{
+
+background:#e93d80;
+
+}
+
+.akun{
+
+position:relative;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+.akun-menu{
+
+display:none;
+
+position:absolute;
+
+top:40px;
+
+right:0;
+
+width:220px;
+
+background:white;
+
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+border-radius:12px;
+
+overflow:hidden;
+
+z-index:999;
+
+}
+
+.akun:hover .akun-menu{
+
+display:block;
+
+}
+
+.akun-menu a{
+
+display:block;
+
+padding:14px;
+
+color:#444;
+
+}
+
+.akun-menu a:hover{
+
+background:#fff1f7;
+
+color:#ff4f94;
+
+}
+
+
+/*========================
+FOOTER
+========================*/
+
+footer{
+
+background:#222;
+
+color:#fff;
+
+margin-top:80px;
+
+padding:70px 0 20px;
+
+}
+
+.footer-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:40px;
+
+}
+
+.footer-item h3{
+
+margin-bottom:20px;
+
+color:#ff8ab8;
+
+}
+
+.footer-item p{
+
+line-height:1.8;
+
+color:#ddd;
+
+}
+
+.footer-item a{
+
+display:block;
+
+margin:12px 0;
+
+color:#ddd;
+
+transition:.3s;
+
+}
+
+.footer-item a:hover{
+
+color:#ff8ab8;
+
+padding-left:8px;
+
+}
+
+.footer-logo{
+
+width:90px;
+
+margin-bottom:20px;
+
+}
+
+.footer-item i{
+
+color:#ff8ab8;
+
+margin-right:10px;
+
+}
+
+footer hr{
+
+margin:40px 0 20px;
+
+border:none;
+
+border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.copyright{
+
+text-align:center;
+
+color:#bbb;
+
+font-size:15px;
+
 }

@@ -1,0 +1,418 @@
+/* Profil Pelanggan - Shopee Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* Main Container */
+.profile-main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Profile */
+.profile-header-wrapper {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.profile-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.profile-user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.profile-photo-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0;
+}
+
+.profile-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff4fa3;
+    display: block;
+}
+
+.photo-upload-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #ff4fa3;
+    color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(255, 79, 163, 0.3);
+}
+
+.photo-upload-btn:hover {
+    background: #ff2c91;
+    transform: scale(1.05);
+}
+
+.profile-user-details h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.profile-user-details p {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 3px;
+}
+
+.profile-action-btn {
+    padding: 10px 20px;
+    background: #ff4fa3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.profile-action-btn:hover {
+    background: #ff2c91;
+    transform: translateY(-1px);
+}
+
+/* Upload Form - Modal Style */
+.upload-form {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-form.active {
+    display: flex;
+}
+
+.upload-modal {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.upload-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.upload-modal-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.upload-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.upload-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: #f9f9f9;
+    border: 2px solid #e8e8e8;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 95px;
+}
+
+.upload-options label:hover {
+    border-color: #ff4fa3;
+    background: #fff5f9;
+}
+
+.upload-icon {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.upload-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+}
+
+.upload-options input[type="file"] {
+    display: none;
+}
+
+.video-container {
+    display: none;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.video-container.active {
+    display: block;
+}
+
+#camera {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+canvas {
+    display: none;
+}
+
+.video-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.form-btn {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-btn-save {
+    background: #ff4fa3;
+    color: white;
+}
+
+.form-btn-save:hover {
+    background: #ff2c91;
+}
+
+.form-btn-cancel {
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.form-btn-cancel:hover {
+    background: #e8e8e8;
+}
+
+/* Content Section */
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-section {
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item {
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+    min-width: 90px;
+}
+
+.info-value {
+    font-size: 13px;
+    color: #333;
+    font-weight: 500;
+    text-align: right;
+    flex: 1;
+    margin-left: 12px;
+    word-break: break-word;
+}
+
+/* Action Buttons */
+.action-buttons-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #ff4fa3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #ff2c91;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background: #efefef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-main-container {
+        padding: 12px;
+    }
+
+    .profile-header-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-user-info {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons-section {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-modal {
+        width: 95%;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-value {
+        text-align: left;
+        margin-left: 0;
+        margin-top: 4px;
+    }
+}
