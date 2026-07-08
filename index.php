@@ -102,3 +102,391 @@ include "include/header.php";
 </section>
 
 <?php include "include/footer.php"; ?>
+
+<!-- INDEX PART 2 -->
+<section class="section">
+<div class="container">
+<div class="section-title">
+<h2>Promo Spesial Minggu Ini</h2>
+<p>Dapatkan penawaran terbaik untuk berbagai rangkaian bunga.</p>
+</div>
+<div class="promo-grid">
+<div class="promo-card">
+<span class="discount">-20%</span>
+<img src="assets/images/promo1.jpg" alt="">
+<div class="card-body">
+<h3>Bouquet Wisuda</h3>
+<p class="old-price">Rp250.000</p>
+<p class="new-price">Rp200.000</p>
+<a href="produk.php" class="btn-primary">Belanja Sekarang</a>
+</div></div>
+<div class="promo-card">
+<span class="discount">-15%</span>
+<img src="assets/images/promo2.jpg" alt="">
+<div class="card-body">
+<h3>Wedding Bouquet</h3>
+<p class="old-price">Rp400.000</p>
+<p class="new-price">Rp340.000</p>
+<a href="produk.php" class="btn-primary">Belanja Sekarang</a>
+</div></div>
+</div></div></section>
+
+<section class="section">
+<div class="container">
+<div class="section-title"><h2>Kategori Produk</h2></div>
+<div class="product-grid">
+<a class="card" href="produk.php?kategori=1"><img src="assets/images/kategori1.jpg"><div class="card-body"><h3>Bouquet</h3></div></a>
+<a class="card" href="produk.php?kategori=2"><img src="assets/images/kategori2.jpg"><div class="card-body"><h3>Wisuda</h3></div></a>
+<a class="card" href="produk.php?kategori=3"><img src="assets/images/kategori3.jpg"><div class="card-body"><h3>Pernikahan</h3></div></a>
+<a class="card" href="produk.php?kategori=4"><img src="assets/images/kategori4.jpg"><div class="card-body"><h3>Standing Flower</h3></div></a>
+</div></div></section>
+
+<section class="about">
+<div class="container about-grid">
+<div>
+<h2>Mengapa Memilih Erlisna Florist?</h2>
+<ul>
+<li>Bunga segar berkualitas premium.</li>
+<li>Desain bouquet modern.</li>
+<li>Harga bersahabat.</li>
+<li>Pengiriman cepat.</li>
+<li>Melayani custom bouquet.</li>
+</ul>
+</div>
+<div><img src="assets/images/about2.jpg"></div>
+</div></section>
+
+<?php
+/* ==========================================
+   PRODUK TERLARIS
+========================================== */
+
+$produk_terlaris = mysqli_query($koneksi,"
+SELECT *
+FROM produk
+ORDER BY id_produk DESC
+LIMIT 4
+");
+?>
+
+<section class="section best-seller">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>🌸 Produk Terlaris</h2>
+
+<p>
+Rangkaian bunga favorit pelanggan
+Erlisna Florist.
+</p>
+
+</div>
+
+<div class="product-grid">
+
+<?php while($p=mysqli_fetch_assoc($produk_terlaris)){ ?>
+
+<div class="card">
+
+<div class="badge">
+
+⭐ Terlaris
+
+</div>
+
+<img
+src="assets/images/<?= $p['gambar']; ?>"
+alt="<?= $p['nama_bunga']; ?>">
+
+<div class="card-body">
+
+<h3>
+
+<?= $p['nama_bunga']; ?>
+
+</h3>
+
+<p class="price">
+
+Rp <?= number_format($p['harga'],0,",","."); ?>
+
+</p>
+
+<p>
+
+<?= substr($p['deskripsi'],0,70); ?>...
+
+</p>
+
+<br>
+
+<a
+href="detail.php?id=<?= $p['id_produk']; ?>"
+class="btn-primary">
+
+Lihat Detail
+
+</a>
+
+</div>
+
+</div>
+
+<?php } ?>
+
+</div>
+
+</div>
+
+</section>
+
+<?php
+/*==================================
+PRODUK PROMO
+===================================*/
+
+$promo = mysqli_query($koneksi,"
+SELECT *
+FROM produk
+ORDER BY RAND()
+LIMIT 4
+");
+?>
+
+<section class="section promo-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>🎁 Promo Minggu Ini</h2>
+
+<p>
+Nikmati berbagai penawaran menarik
+khusus pelanggan Erlisna Florist.
+</p>
+
+</div>
+
+<div class="promo-grid">
+
+<?php while($p=mysqli_fetch_assoc($promo)){ ?>
+
+<div class="promo-card">
+
+<span class="discount">
+
+-20%
+
+</span>
+
+<img
+src="assets/images/<?= $p['gambar']; ?>"
+alt="<?= $p['nama_bunga']; ?>">
+
+<div class="card-body">
+
+<h3>
+
+<?= $p['nama_bunga']; ?>
+
+</h3>
+
+<p class="old-price">
+
+Rp
+<?= number_format($p['harga']+50000,0,",","."); ?>
+
+</p>
+
+<p class="new-price">
+
+Rp
+<?= number_format($p['harga'],0,",","."); ?>
+
+</p>
+
+<a
+href="detail.php?id=<?= $p['id_produk']; ?>"
+class="btn-primary">
+
+Belanja Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<?php } ?>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section testimonial-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+❤️ Apa Kata Pelanggan
+
+</h2>
+
+<p>
+
+Testimoni pelanggan
+Erlisna Florist
+
+</p>
+
+</div>
+
+<div class="testimonial-grid">
+
+<div class="testimonial">
+
+<img
+src="assets/images/user1.jpg">
+
+<div class="stars">
+
+★★★★★
+
+</div>
+
+<h3>
+
+Salsa Putri
+
+</h3>
+
+<p>
+
+Bouquet sangat cantik,
+bunganya segar dan
+pengirimannya cepat.
+
+</p>
+
+</div>
+
+<div class="testimonial">
+
+<img
+src="assets/images/user2.jpg">
+
+<div class="stars">
+
+★★★★★
+
+</div>
+
+<h3>
+
+Nabila
+
+</h3>
+
+<p>
+
+Pelayanan ramah,
+hasil bouquet lebih
+bagus dari ekspektasi.
+
+</p>
+
+</div>
+
+<div class="testimonial">
+
+<img
+src="assets/images/user3.jpg">
+
+<div class="stars">
+
+★★★★★
+
+</div>
+
+<h3>
+
+Dewi Ayu
+
+</h3>
+
+<p>
+
+Harga terjangkau
+dan kualitas bunga
+sangat memuaskan.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+📸 Galeri Bunga
+
+</h2>
+
+<p>
+
+Inspirasi rangkaian bunga
+Erlisna Florist
+
+</p>
+
+</div>
+
+<div class="product-grid">
+
+<div class="card">
+
+<img src="assets/images/gallery1.jpg">
+
+</div>
+
+<div class="card">
+
+<img src="assets/images/gallery2.jpg">
+
+</div>
+
+<div class="card">
+
+<img src="assets/images/gallery3.jpg">
+
+</div>
+
+<div class="card">
+
+<img src="assets/images/gallery4.jpg">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
