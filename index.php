@@ -16,7 +16,7 @@ ORDER BY id_produk DESC
 LIMIT 8
 ");
 
-include "include/header.php";
+include "includes/header.php";
 ?>
 
 <section class="hero">
@@ -27,7 +27,7 @@ include "include/header.php";
             <a href="produk.php" class="btn-primary">Belanja Sekarang</a>
         </div>
         <div class="hero-image">
-            <img src="assets/images/banner.png" alt="Banner">
+            <img src="assets/images/bg web.jpg" alt="Banner">
         </div>
     </div>
 </section>
@@ -55,106 +55,18 @@ include "include/header.php";
 </div>
 </section>
 
-<section class="about">
-<div class="container about-grid">
-<div>
-<img src="assets/images/toko.jpg" alt="Tentang Kami">
-</div>
-<div>
-<h2>Tentang Erlisna Florist</h2>
-<p>Kami menyediakan berbagai rangkaian bunga segar berkualitas untuk berbagai acara spesial.</p>
-<ul>
-<li>Bunga segar berkualitas</li>
-<li>Harga terjangkau</li>
-<li>Desain eksklusif</li>
-<li>Pengiriman cepat</li>
-</ul>
-</div>
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-<div class="section-title">
-<h2>Testimoni</h2>
-</div>
-<div class="testimonial-grid">
-<div class="testimonial">
-<img src="assets/images/user1.png">
-<div class="stars">★★★★★</div>
-<p>"Bunganya sangat cantik dan segar."</p>
-<strong>Salsa</strong>
-</div>
-<div class="testimonial">
-<img src="assets/images/user2.png">
-<div class="stars">★★★★★</div>
-<p>"Pelayanan cepat dan ramah."</p>
-<strong>Rina</strong>
-</div>
-<div class="testimonial">
-<img src="assets/images/user3.png">
-<div class="stars">★★★★★</div>
-<p>"Sangat puas dengan hasil bouquet."</p>
-<strong>Dewi</strong>
-</div>
-</div>
-</div>
-</section>
-
-<?php include "include/footer.php"; ?>
-
 <!-- INDEX PART 2 -->
-<section class="section">
-<div class="container">
-<div class="section-title">
-<h2>Promo Spesial Minggu Ini</h2>
-<p>Dapatkan penawaran terbaik untuk berbagai rangkaian bunga.</p>
-</div>
-<div class="promo-grid">
-<div class="promo-card">
-<span class="discount">-20%</span>
-<img src="assets/images/promo1.jpg" alt="">
-<div class="card-body">
-<h3>Bouquet Wisuda</h3>
-<p class="old-price">Rp250.000</p>
-<p class="new-price">Rp200.000</p>
-<a href="produk.php" class="btn-primary">Belanja Sekarang</a>
-</div></div>
-<div class="promo-card">
-<span class="discount">-15%</span>
-<img src="assets/images/promo2.jpg" alt="">
-<div class="card-body">
-<h3>Wedding Bouquet</h3>
-<p class="old-price">Rp400.000</p>
-<p class="new-price">Rp340.000</p>
-<a href="produk.php" class="btn-primary">Belanja Sekarang</a>
-</div></div>
-</div></div></section>
+
 
 <section class="section">
 <div class="container">
 <div class="section-title"><h2>Kategori Produk</h2></div>
 <div class="product-grid">
-<a class="card" href="produk.php?kategori=1"><img src="assets/images/kategori1.jpg"><div class="card-body"><h3>Bouquet</h3></div></a>
-<a class="card" href="produk.php?kategori=2"><img src="assets/images/kategori2.jpg"><div class="card-body"><h3>Wisuda</h3></div></a>
-<a class="card" href="produk.php?kategori=3"><img src="assets/images/kategori3.jpg"><div class="card-body"><h3>Pernikahan</h3></div></a>
-<a class="card" href="produk.php?kategori=4"><img src="assets/images/kategori4.jpg"><div class="card-body"><h3>Standing Flower</h3></div></a>
+<a class="card" href="produk.php?kategori=1"><img src="assets/images/buket1.jpg"><div class="card-body"><h3>Bouquet</h3></div></a>
+<a class="card" href="produk.php?kategori=2"><img src="assets/images/buket w2.jpg"><div class="card-body"><h3>Wisuda</h3></div></a>
+<a class="card" href="produk.php?kategori=3"><img src="assets/images/buket a3.jpg"><div class="card-body"><h3>Pernikahan</h3></div></a>
+<a class="card" href="produk.php?kategori=4"><img src="assets/images/buket r1.jpg"><div class="card-body"><h3>Standing Flower</h3></div></a>
 </div></div></section>
-
-<section class="about">
-<div class="container about-grid">
-<div>
-<h2>Mengapa Memilih Erlisna Florist?</h2>
-<ul>
-<li>Bunga segar berkualitas premium.</li>
-<li>Desain bouquet modern.</li>
-<li>Harga bersahabat.</li>
-<li>Pengiriman cepat.</li>
-<li>Melayani custom bouquet.</li>
-</ul>
-</div>
-<div><img src="assets/images/about2.jpg"></div>
-</div></section>
 
 <?php
 /* ==========================================
@@ -354,7 +266,7 @@ Erlisna Florist
 <div class="testimonial">
 
 <img
-src="assets/images/user1.jpg">
+src="assets/images/salsa.jpeg">
 
 <div class="stars">
 
@@ -381,7 +293,7 @@ pengirimannya cepat.
 <div class="testimonial">
 
 <img
-src="assets/images/user2.jpg">
+src="assets/images/PTS.jpg">
 
 <div class="stars">
 
@@ -463,25 +375,25 @@ Erlisna Florist
 
 <div class="card">
 
-<img src="assets/images/gallery1.jpg">
+<img src="assets/images/buket a4.jpg">
 
 </div>
 
 <div class="card">
 
-<img src="assets/images/gallery2.jpg">
+<img src="assets/images/buket r1.jpg">
 
 </div>
 
 <div class="card">
 
-<img src="assets/images/gallery3.jpg">
+<img src="assets/images/buket w2.jpg">
 
 </div>
 
 <div class="card">
 
-<img src="assets/images/gallery4.jpg">
+<img src="assets/images/buket3.jpg">
 
 </div>
 
@@ -490,3 +402,20 @@ Erlisna Florist
 </div>
 
 </section>
+
+<section class="about">
+<div class="container about-grid">
+<div>
+<h2>Mengapa Memilih Erlisna Florist?</h2>
+<ul>
+<li>Bunga segar berkualitas premium.</li>
+<li>Desain bouquet modern.</li>
+<li>Harga bersahabat.</li>
+<li>Pengiriman cepat.</li>
+<li>Melayani custom bouquet.</li>
+</ul>
+</div>
+<div><img src="assets/images/logo.png"></div>
+</div></section>
+
+<?php include "includes/footer.php"; ?>

@@ -28,6 +28,13 @@ $base_pelanggan = $is_pelanggan_dir ? './' : 'pelanggan/';
                 Dashboard
             </a>
 
+            <a href="<?= $base_root; ?>index.php">Beranda</a>
+
+            <a href="<?= $base_root; ?>produk.php">Produk</a>
+
+            <a href="<?= $base_root; ?>tentang.php">Tentang Kami</a>
+
+
             <a href="<?= $base_root; ?>keranjang.php">
                 Keranjang
             </a>
@@ -43,6 +50,7 @@ $base_pelanggan = $is_pelanggan_dir ? './' : 'pelanggan/';
             <a href="<?= $base_pelanggan; ?>logout.php">
                 Logout
             </a>
+
 
         <?php } else { ?>
 
