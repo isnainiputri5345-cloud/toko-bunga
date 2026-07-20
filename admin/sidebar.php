@@ -20,8 +20,16 @@ Produk
 Pesanan
 </a>
 
+<a href="pembayaran.php">
+ Pembayaran
+</a>
+
 <a href="laporan.php">
-Laporan
+ Laporan
+</a>
+
+<a href="chat.php">
+ Live Chat
 </a>
 
 <a href="logout.php">

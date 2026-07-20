@@ -138,3 +138,253 @@ border-radius:8px;
 .form-admin button{
 margin-top:20px;
 }
+
+.laporan-box{
+
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:25px;
+
+}
+
+
+.laporan-box select{
+
+padding:10px;
+border-radius:8px;
+
+}
+
+
+.laporan-box button{
+
+padding:10px 20px;
+border:none;
+background:#ff4f94;
+color:white;
+border-radius:8px;
+
+}
+
+
+.grafik{
+
+background:white;
+padding:25px;
+margin-top:30px;
+border-radius:15px;
+
+}
+
+
+.grafik canvas{
+
+max-height:400px;
+
+}
+
+.laporan-box{
+
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+
+}
+
+
+.laporan-box input{
+
+padding:10px;
+margin:10px;
+border-radius:8px;
+border:1px solid #ddd;
+
+}
+
+
+.laporan-box button{
+
+background:#ff4f94;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+
+.grafik{
+
+background:white;
+padding:25px;
+margin-top:25px;
+border-radius:15px;
+
+}
+
+.table-box{
+
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:25px;
+
+}
+
+
+.table-box table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+
+.table-box th{
+
+background:#ff4f94;
+color:white;
+padding:12px;
+
+}
+
+
+.table-box td{
+
+padding:12px;
+border-bottom:1px solid #ddd;
+
+}
+
+
+.table-box tr:hover{
+
+background:#fff0f6;
+
+}
+
+table select{
+
+padding:8px;
+border-radius:8px;
+border:1px solid #ddd;
+
+}
+
+
+table button{
+
+background:#ff4f94;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+
+table button:hover{
+
+opacity:0.8;
+
+}
+
+.laporan-box{
+
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+
+}
+
+
+.table-box{
+
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+
+}
+
+
+.table-box table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+
+.table-box th{
+
+background:#ff4f94;
+color:white;
+padding:12px;
+
+}
+
+
+.table-box td{
+
+padding:12px;
+border-bottom:1px solid #ddd;
+
+}
+
+.chat-box,
+.chat-admin{
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+margin:20px 0;
+
+}
+
+
+.chat-box p,
+.chat-admin p{
+
+padding:10px;
+
+border-bottom:1px solid #eee;
+
+}
+
+
+.chat-box input,
+.chat-admin input{
+
+width:70%;
+
+padding:10px;
+
+border-radius:8px;
+
+}
+
+
+
+.chat-box button,
+.chat-admin button{
+
+background:#ff4f94;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:8px;
+
+}

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if(!isset($_SESSION['admin'])){
@@ -7,73 +8,357 @@ if(!isset($_SESSION['admin'])){
 }
 
 include "../config/koneksi.php";
+
+
+// ===============================
+// UPDATE STATUS PESANAN
+// ===============================
+
+if(isset($_POST['update_status'])){
+
+
+    $id_pesanan = $_POST['id_pesanan'];
+
+    $status = $_POST['status'];
+
+
+
+    mysqli_query($koneksi,
+
+    "
+    UPDATE pesanan
+
+    SET status='$status'
+
+    WHERE id_pesanan='$id_pesanan'
+
+    "
+
+    );
+
+
+    echo "
+    <script>
+    alert('Status pesanan berhasil diubah');
+    window.location='pesanan.php';
+    </script>
+    ";
+
+
+}
+
+
+
 ?>
 
+
 <!DOCTYPE html>
-<html>
+
+<html lang="id">
+
 <head>
 
-<title>Pesanan</title>
+
+<meta charset="UTF-8">
+
+<title>
+Data Pesanan
+</title>
+
 
 <link rel="stylesheet"
 href="../assets/css/admin.css">
 
+
 </head>
+
+
 
 <body>
 
+
+
 <?php include "sidebar.php"; ?>
+
+
 
 <div class="content">
 
-<h1>Data Pesanan</h1>
+
+
+<h1>
+Data Pesanan
+</h1>
+
+
+
+
 
 <table>
 
+
 <tr>
 
-<th>ID</th>
-<th>Pelanggan</th>
-<th>Tanggal</th>
-<th>Total</th>
-<th>Status</th>
+<th>
+ID Pesanan
+</th>
+
+
+<th>
+Nama Pelanggan
+</th>
+
+
+<th>
+Tanggal
+</th>
+
+
+<th>
+Total Harga
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Aksi
+</th>
+
 
 </tr>
 
+
+
+
+
 <?php
 
-$data=mysqli_query($koneksi,"
-SELECT *
-FROM pesanan
-JOIN pelanggan
-ON pesanan.id_pelanggan=
-pelanggan.id_pelanggan
-");
 
-while($d=mysqli_fetch_array($data)){
+$data=mysqli_query($koneksi,
+
+
+"
+SELECT
+
+pesanan.id_pesanan,
+pesanan.tanggal_pesan,
+pesanan.total_harga,
+pesanan.status,
+
+pelanggan.nama
+
+
+FROM pesanan
+
+
+LEFT JOIN pelanggan
+
+ON pesanan.id_pelanggan =
+pelanggan.id_pelanggan
+
+
+ORDER BY pesanan.id_pesanan DESC
+
+"
+
+);
+
+
+
+if(mysqli_num_rows($data)>0){
+
+
+while($d=mysqli_fetch_assoc($data)){
+
+
+?>
+
+
+
+<tr>
+
+
+
+<td>
+
+#<?= $d['id_pesanan']; ?>
+
+</td>
+
+
+
+
+<td>
+
+<?= $d['nama'] ?? 'Pelanggan'; ?>
+
+</td>
+
+
+
+
+<td>
+
+<?= date(
+"d-m-Y",
+strtotime($d['tanggal_pesan'])
+); ?>
+
+
+</td>
+
+
+
+
+
+<td>
+
+Rp <?= number_format(
+$d['total_harga'],
+0,
+",",
+"."
+); ?>
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<form method="POST">
+
+
+<input type="hidden"
+name="id_pesanan"
+value="<?= $d['id_pesanan']; ?>">
+
+
+
+<select name="status">
+
+
+<option value="Menunggu"
+
+<?= ($d['status']=="Menunggu")?'selected':''; ?>
+
+>
+
+Menunggu
+
+</option>
+
+
+
+
+<option value="Diproses"
+
+<?= ($d['status']=="Diproses")?'selected':''; ?>
+
+>
+
+Diproses
+
+</option>
+
+
+
+
+<option value="Selesai"
+
+<?= ($d['status']=="Selesai")?'selected':''; ?>
+
+>
+
+Selesai
+
+</option>
+
+
+
+</select>
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+<button 
+type="submit"
+name="update_status">
+
+Update
+
+</button>
+
+
+</form>
+
+
+</td>
+
+
+
+
+</tr>
+
+
+
+<?php
+
+
+}
+
+
+}else{
+
+
 ?>
 
 <tr>
 
-<td>#<?= $d['id_pesanan']; ?></td>
+<td colspan="6">
 
-<td><?= $d['nama']; ?></td>
+Belum ada data pesanan
 
-<td><?= $d['tanggal']; ?></td>
-
-<td>
-Rp <?= number_format($d['total']); ?>
 </td>
-
-<td><?= $d['status']; ?></td>
 
 </tr>
 
-<?php } ?>
+
+<?php
+
+}
+
+
+?>
+
+
 
 </table>
 
+
+
+
 </div>
 
+
+
 </body>
+
 </html>

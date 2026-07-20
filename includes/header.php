@@ -1,13 +1,18 @@
 <?php
-if(session_status() == PHP_SESSION_NONE){
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 include_once __DIR__ . "/../config/koneksi.php";
 
-/* ===========================
-   Ambil Data Kategori
-=========================== */
+$is_pelanggan = basename(dirname($_SERVER['SCRIPT_NAME'])) == "pelanggan";
+
+$base_root = $is_pelanggan ? "../" : "";
+$base_pelanggan = $is_pelanggan ? "" : "pelanggan/";
+
+/* ==========================
+   AMBIL DATA KATEGORI
+========================== */
 
 $kategori = mysqli_query($koneksi,"
 SELECT *
@@ -23,17 +28,15 @@ ORDER BY nama_kategori ASC
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>Erlisna Florist</title>
 
 <link rel="stylesheet"
-href="assets/css/style.css">
+href="<?= $base_root ?>assets/css/style.css">
 
-<link
-rel="stylesheet"
+<link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
@@ -46,14 +49,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="topbar">
 
-<!-- ================= LOGO ================= -->
+
+<!-- =======================
+LOGO
+======================= -->
 
 <div class="logo">
 
-<a href="index.php">
+<a href="<?= $base_root ?>index.php">
 
-<img
-src="assets/images/logo.png"
+<img src="<?= $base_root ?>assets/images/logo.png"
 alt="Logo">
 
 </a>
@@ -62,19 +67,21 @@ alt="Logo">
 
 <h2>ERLISNA FLORIST</h2>
 
-<p>
-Fresh Flower & Bouquet
-</p>
+<p>Fresh Flower & Bouquet</p>
 
 </div>
 
 </div>
 
-<!-- ================= MENU ================= -->
+
+
+<!-- =======================
+MENU
+======================= -->
 
 <nav>
 
-<a href="index.php">
+<a href="<?= $base_root ?>index.php">
 
 <i class="fa-solid fa-house"></i>
 
@@ -82,27 +89,35 @@ Beranda
 
 </a>
 
-<!-- ================= DROPDOWN ================= -->
 
-<div class="dropdown">
 
-<a href="produk.php">
+<!-- PRODUK -->
+
+<div class="nav-dropdown">
+
+<button
+type="button"
+class="dropdown-btn">
 
 Produk
 
 <i class="fa-solid fa-angle-down"></i>
 
-</a>
+</button>
 
 <div class="dropdown-content">
 
-<?php
-while($k=mysqli_fetch_assoc($kategori)){
-?>
+<a href="<?= $base_root ?>produk.php">
 
-<a href="produk.php?kategori=<?= $k['id_kategori']; ?>">
+Semua Produk
 
-<?= $k['nama_kategori']; ?>
+</a>
+
+<?php while($k=mysqli_fetch_assoc($kategori)){ ?>
+
+<a href="<?= $base_root ?>produk.php?kategori=<?= $k['id_kategori']; ?>">
+
+<?= htmlspecialchars($k['nama_kategori']); ?>
 
 </a>
 
@@ -112,13 +127,16 @@ while($k=mysqli_fetch_assoc($kategori)){
 
 </div>
 
-<a href="tentang.php">
+
+
+<a href="<?= $base_root ?>tentang.php">
 
 Tentang Kami
 
 </a>
 
-<a href="kontak.php">
+
+<a href="<?= $base_root ?>kontak.php">
 
 Kontak
 
@@ -126,22 +144,25 @@ Kontak
 
 </nav>
 
-<!-- ================= SEARCH ================= -->
+
+
+
+
+<!-- =======================
+SEARCH
+======================= -->
 
 <form
-action="produk.php"
+action="<?= $base_root ?>produk.php"
 method="GET"
 class="search-box">
 
 <input
-
 type="text"
-
 name="cari"
-
 placeholder="Cari bunga...">
 
-<button>
+<button type="submit">
 
 <i class="fa fa-search"></i>
 
@@ -149,63 +170,86 @@ placeholder="Cari bunga...">
 
 </form>
 
-<!-- ================= ICON ================= -->
+
+
+
+
+<!-- =======================
+ICON
+======================= -->
 
 <div class="header-icon">
 
-<a href="keranjang.php">
+
+<a href="<?= $base_root ?>keranjang.php">
 
 <i class="fa-solid fa-cart-shopping"></i>
 
 <?php
-
 if(isset($_SESSION['keranjang'])){
-
-echo "<span>".count($_SESSION['keranjang'])."</span>";
-
-}
-
 ?>
 
-</a>
+<span class="cart-count">
 
-<?php
-
-if(isset($_SESSION['id_pelanggan'])){
-
-?>
-
-<div class="akun">
-
-<i class="fa-solid fa-user"></i>
-
-<span>
-
-<?= $_SESSION['nama']; ?>
+<?= count($_SESSION['keranjang']); ?>
 
 </span>
 
-<div class="akun-menu">
+<?php } ?>
 
-<a href="pelanggan/dashboard.php">
+</a>
+
+
+
+
+<?php if(isset($_SESSION['id_pelanggan'])){ ?>
+
+
+<div class="nav-dropdown profil">
+
+<button
+type="button"
+class="dropdown-btn">
+
+<i class="fa-solid fa-user"></i>
+
+<?= htmlspecialchars($_SESSION['nama']); ?>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</button>
+
+
+<div class="dropdown-content">
+
+<a href="<?= $base_root ?>pelanggan/dashboard.php">
 
 Dashboard
 
 </a>
 
-<a href="pelanggan/profil.php">
+<a href="<?= $base_root ?>pelanggan/profil.php">
 
-Profil
+Profil Saya
 
 </a>
 
-<a href="pelanggan/riwayat.php">
+<a href="<?= $base_root ?>pelanggan/edit_profile.php">
+
+Edit Profil
+
+</a>
+
+<a href="<?= $base_root ?>pelanggan/riwayat.php">
 
 Pesanan Saya
 
 </a>
 
-<a href="pelanggan/logout.php">
+<hr>
+
+<a class="logout"
+href="<?= $base_root ?>pelanggan/logout.php">
 
 Logout
 
@@ -215,14 +259,12 @@ Logout
 
 </div>
 
-<?php
 
-}else{
+<?php }else{ ?>
 
-?>
 
 <a
-href="login.php"
+href="<?= $base_root ?>pelanggan/login.php"
 class="login-btn">
 
 Login
@@ -230,7 +272,7 @@ Login
 </a>
 
 <a
-href="register.php"
+href="<?= $base_root ?>pelanggan/register.php"
 class="register-btn">
 
 Daftar
@@ -238,7 +280,7 @@ Daftar
 </a>
 
 <a
-href="admin/login.php"
+href="<?= $base_root ?>admin/login.php"
 class="admin-btn">
 
 Admin

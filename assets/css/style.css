@@ -1,861 +1,8632 @@
 /* =====================================================
-   ERLISNA FLORIST - STYLE.CSS (PART 1)
-   Modern Pink Theme
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 1A
+   ROOT - RESET - BODY - CONTAINER
 ===================================================== */
 
+/* ==========================
+   GOOGLE FONT
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ==========================
+   ROOT
+========================== */
+
 :root{
+
     --primary:#ff4f94;
     --primary-dark:#e63d81;
-    --secondary:#fff5f8;
-    --text:#333;
-    --gray:#777;
-    --white:#fff;
-    --shadow:0 10px 25px rgba(0,0,0,.08);
-    --radius:18px;
+    --primary-light:#fff0f6;
+
+    --secondary:#fff8fb;
+
+    --success:#28a745;
+    --danger:#dc3545;
+    --warning:#ffc107;
+
+    --text:#333333;
+    --text-light:#666666;
+    --gray:#888888;
+
+    --white:#ffffff;
+    --black:#222222;
+
+    --border:#eeeeee;
+
+    --shadow-sm:0 3px 10px rgba(0,0,0,.08);
+    --shadow-md:0 10px 25px rgba(0,0,0,.10);
+    --shadow-lg:0 15px 35px rgba(0,0,0,.15);
+
+    --radius-sm:8px;
+    --radius:15px;
+    --radius-lg:25px;
+
+    --transition:.35s ease;
+
 }
+
+
+/* ==========================
+   RESET
+========================== */
 
 *{
+
     margin:0;
     padding:0;
+
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+
 }
 
-html{scroll-behavior:smooth;}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
 
 body{
-    background:#fafafa;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:15px;
+
     color:var(--text);
-    line-height:1.6;
+
+    background:#fafafa;
+
+    overflow-x:hidden;
+
+    line-height:1.7;
+
 }
+
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f3f3;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-dark);
+
+}
+
+
+/* ==========================
+   ELEMENT
+========================== */
 
 img{
+
     max-width:100%;
+
     display:block;
+
 }
 
-a{text-decoration:none;}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    transition:var(--transition);
+
+}
+
+
+ul{
+
+    list-style:none;
+
+}
+
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+
+input,
+textarea,
+select{
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+/* ==========================
+   CONTAINER
+========================== */
 
 .container{
+
     width:90%;
-    max-width:1300px;
+
+    max-width:1280px;
+
     margin:auto;
+
 }
 
-/* ================= HEADER ================= */
 
-header{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background:#fff;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 0;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.logo img{
-    width:70px;
-    height:70px;
-    object-fit:contain;
-}
-
-.logo h2{
-    color:var(--primary);
-    font-size:28px;
-}
-
-nav{
-    display:flex;
-    align-items:center;
-    gap:28px;
-}
-
-nav>a{
-    color:#444;
-    font-weight:600;
-    transition:.3s;
-}
-
-nav>a:hover{
-    color:var(--primary);
-}
-
-.dropdown{
-    position:relative;
-}
-
-.dropdown-content{
-    display:none;
-    position:absolute;
-    top:35px;
-    left:0;
-    min-width:220px;
-    background:#fff;
-    border-radius:12px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
-}
-
-.dropdown-content a{
-    display:block;
-    padding:12px 18px;
-    color:#444;
-}
-
-.dropdown-content a:hover{
-    background:var(--secondary);
-    color:var(--primary);
-}
-
-.search-box{
-    display:flex;
-    align-items:center;
-    background:#f5f5f5;
-    border-radius:40px;
-    overflow:hidden;
-    width:300px;
-}
-
-.search-box input{
-    flex:1;
-    border:none;
-    background:transparent;
-    padding:12px 16px;
-    outline:none;
-}
-
-.search-box button{
-    border:none;
-    background:var(--primary);
-    color:#fff;
-    padding:12px 18px;
-    cursor:pointer;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    background:linear-gradient(135deg,#ffe5ef,#fff);
-    padding:70px 0;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-    gap:60px;
-}
-
-.hero h1{
-    font-size:54px;
-    color:var(--primary);
-    margin-bottom:20px;
-}
-
-.hero p{
-    font-size:20px;
-    color:#666;
-    margin-bottom:30px;
-}
-
-.btn-primary{
-    display:inline-block;
-    background:var(--primary);
-    color:#fff;
-    padding:15px 35px;
-    border-radius:40px;
-    transition:.3s;
-}
-
-.btn-primary:hover{
-    background:var(--primary-dark);
-    transform:translateY(-3px);
-}
-
-.hero-image img{
-    border-radius:30px;
-    box-shadow:var(--shadow);
-}
-
-/* ================= SECTION ================= */
+/* ==========================
+   SECTION
+========================== */
 
 .section{
+
     padding:80px 0;
+
 }
 
+
+/* ==========================
+   TITLE
+========================== */
+
 .section-title{
+
     text-align:center;
-    margin-bottom:50px;
+
+    margin-bottom:60px;
+
+}
+
+.section-title span{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
 }
 
 .section-title h2{
-    color:var(--primary);
+
+    margin-top:12px;
+
     font-size:40px;
+
+    color:var(--primary);
+
 }
 
 .section-title p{
-    color:#777;
+
+    margin-top:15px;
+
+    color:var(--text-light);
+
+    max-width:700px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
 }
 
-/* ================= PRODUCT CARD ================= */
 
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
+/* ==========================
+   BUTTON
+========================== */
+
+.btn-primary{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:14px 32px;
+
+    border-radius:35px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
 }
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+}
+
+
+.btn-outline{
+
+    display:inline-block;
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+    padding:13px 30px;
+
+    border-radius:35px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-outline:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+
+/* ==========================
+   CARD
+========================== */
 
 .card{
+
     background:#fff;
-    border-radius:var(--radius);
+
+    border-radius:20px;
+
     overflow:hidden;
-    box-shadow:var(--shadow);
-    transition:.3s;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+
 }
 
 .card:hover{
+
     transform:translateY(-8px);
+
+    box-shadow:var(--shadow-lg);
+
 }
 
-.card img{
-    height:250px;
-    object-fit:cover;
-    width:100%;
-}
 
-.card-body{
-    padding:20px;
-}
+/* ==========================
+   BADGE
+========================== */
 
 .badge{
+
     display:inline-block;
-    background:#ffe0ec;
+
+    background:#ffe4ef;
+
     color:var(--primary);
-    padding:5px 12px;
+
+    padding:6px 15px;
+
     border-radius:30px;
+
     font-size:13px;
-    margin-bottom:10px;
-}
 
-.card h3{
-    font-size:20px;
-    margin-bottom:10px;
-}
+    font-weight:600;
 
-.price{
-    color:var(--primary);
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.card .btn-primary{
-    width:100%;
-    text-align:center;
 }
 
 
-/* ================= PROMO ================= */
-.promo-grid,.testimonial-grid,.contact-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-}
-.promo-card{
-background:#fff;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-overflow:hidden;
-position:relative;
-transition:.3s;
-}
-.promo-card:hover{transform:translateY(-8px);}
-.discount{
-position:absolute;
-top:15px;left:15px;
-background:#ff4f94;color:#fff;
-padding:8px 14px;border-radius:30px;font-weight:bold;
-}
-.old-price{text-decoration:line-through;color:#888;}
-.new-price{color:#ff4f94;font-size:28px;font-weight:bold;}
-/* ================= BEST SELLER ================= */
-.best-seller .card::before{
-content:"★ Terlaris";
-position:absolute;
-background:#ffd54f;
-padding:8px 12px;
-border-radius:0 0 12px 0;
-font-size:13px;
-font-weight:bold;
-}
-/* ================= TESTIMONI ================= */
-.testimonial{
-background:#fff;
-padding:30px;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-text-align:center;
-}
-.testimonial img{
-width:90px;height:90px;border-radius:50%;
-margin:auto;margin-bottom:15px;
-object-fit:cover;
-}
-.stars{color:#ffc107;font-size:22px;margin:10px 0;}
-/* ================= ABOUT ================= */
-.about{
-background:#fff5f8;
-padding:80px 0;
-}
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-.about ul{margin-top:20px;}
-.about li{
-list-style:none;
-margin:12px 0;
-font-size:18px;
-}
-.about li::before{
-content:"✔";
-color:#ff4f94;
-margin-right:10px;
-}
-/* ================= CONTACT ================= */
-.contact-box{
-background:#fff;
-padding:35px;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-.contact-box input,
-.contact-box textarea{
-width:100%;
-padding:14px;
-margin-bottom:15px;
-border:1px solid #ddd;
-border-radius:10px;
-}
-.contact-box button{
-background:#ff4f94;
-color:#fff;
-padding:14px 25px;
-border:none;
-border-radius:30px;
-cursor:pointer;
-}
-/* ================= FOOTER ================= */
-footer{
-background:#222;
-color:#fff;
-padding:60px 0 20px;
-}
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:35px;
-}
-footer h3{margin-bottom:20px;color:#ff82b4;}
-footer a{
-display:block;
-color:#ddd;
-margin:10px 0;
-}
-footer a:hover{color:#fff;}
-.copyright{
-text-align:center;
-border-top:1px solid rgba(255,255,255,.1);
-margin-top:40px;
-padding-top:20px;
-}
-/* ================= RESPONSIVE ================= */
+/* ==========================
+   RESPONSIVE
+========================== */
+
 @media(max-width:992px){
-.hero-grid,.about-grid{grid-template-columns:1fr;}
-.topbar{flex-direction:column;gap:20px;}
-nav{flex-wrap:wrap;justify-content:center;}
-.search-box{width:100%;}
+
+.container{
+
+width:94%;
+
 }
+
+.section{
+
+padding:70px 0;
+
+}
+
+.section-title h2{
+
+font-size:34px;
+
+}
+
+}
+
+
 @media(max-width:768px){
-.hero h1{font-size:36px;}
-.section-title h2{font-size:30px;}
-.logo h2{font-size:22px;}
+
+body{
+
+font-size:14px;
+
+}
+
+.section{
+
+padding:60px 0;
+
+}
+
+.section-title{
+
+margin-bottom:40px;
+
+}
+
+.section-title h2{
+
+font-size:28px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 1B
+   HEADER - LOGO - NAVBAR
+===================================================== */
+
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    background:#fff;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+    z-index:9999;
+
+}
+
+
+/* ==========================
+   TOPBAR
+========================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    min-height:85px;
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-shrink:0;
+
+}
+
+
+.logo a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.logo img{
+
+    width:65px;
+
+    height:65px;
+
+    object-fit:contain;
+
+}
+
+
+.logo h2{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+    line-height:1.1;
+
+    margin-bottom:3px;
+
+}
+
+
+.logo p{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+/* ==========================
+   NAVBAR
+========================== */
+
+nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:auto;
+
+}
+
+
+nav>a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    color:#444;
+
+    transition:.3s;
+
+}
+
+
+nav>a i{
+
+    font-size:15px;
+
+}
+
+
+nav>a:hover{
+
+    background:#fff0f6;
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================
+   ACTIVE MENU
+========================== */
+
+nav>a.active{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+
+/* ==========================
+   ICON MENU
+========================== */
+
+nav>a:hover i{
+
+    transform:scale(1.1);
+
+}
+
+
+/* ==========================
+   RIGHT MENU
+========================== */
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+/* ==========================
+   STICKY EFFECT
+========================== */
+
+header.scrolled{
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1100px){
+
+.topbar{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    padding:15px 0;
+
+}
+
+nav{
+
+    width:100%;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.logo img{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+.logo p{
+
+    display:none;
+
+}
+
+nav{
+
+    gap:6px;
+
+}
+
+nav>a{
+
+    padding:10px 12px;
+
+    font-size:14px;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.topbar{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+nav{
+
+    flex-direction:column;
+
+    width:100%;
+
+}
+
+nav>a{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 1C
+   DROPDOWN PRODUK & PROFIL
+===================================================== */
+
+
+/* ==========================
+   DROPDOWN WRAPPER
+========================== */
+
+.dropdown,
+.akun{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+/* ==========================
+   TOMBOL DROPDOWN
+========================== */
+
+.dropbtn,
+.akun-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:none;
+
+    border:none;
+
+    padding:12px 18px;
+
+    color:#444;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.dropbtn:hover,
+.akun-btn:hover{
+
+    background:#fff0f6;
+
+    color:var(--primary);
+
+}
+
+
+.dropbtn i:last-child,
+.akun-btn i:last-child{
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================
+   SAAT AKTIF
+========================== */
+
+.dropdown.active .dropbtn,
+.akun.active .akun-btn{
+
+    background:#fff0f6;
+
+    color:var(--primary);
+
+}
+
+
+.dropdown.active .dropbtn i:last-child,
+.akun.active .akun-btn i:last-child{
+
+    transform:rotate(180deg);
+
+}
+
+
+/* ==========================
+   MENU DROPDOWN
+========================== */
+
+.dropdown-content,
+.akun-menu{
+
+    position:absolute;
+
+    top:115%;
+
+    left:0;
+
+    min-width:240px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+    border:1px solid #f1f1f1;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(15px);
+
+    transition:.25s ease;
+
+    z-index:99999;
+
+}
+
+
+/* ==========================
+   PROFIL DI KANAN
+========================== */
+
+.akun-menu{
+
+    right:0;
+
+    left:auto;
+
+}
+
+
+/* ==========================
+   SAAT DIBUKA
+========================== */
+
+.dropdown.active .dropdown-content{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+
+.akun.active .akun-menu{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+
+/* ==========================
+   ITEM MENU
+========================== */
+
+.dropdown-content a,
+.akun-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 20px;
+
+    color:#444;
+
+    font-size:15px;
+
+    transition:.25s;
+
+}
+
+
+.dropdown-content a:hover,
+.akun-menu a:hover{
+
+    background:#fff0f6;
+
+    color:var(--primary);
+
+    padding-left:26px;
+
+}
+
+
+/* ==========================
+   HR MENU
+========================== */
+
+.akun-menu hr{
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+}
+
+
+/* ==========================
+   LOGOUT
+========================== */
+
+.logout{
+
+    color:#dc3545 !important;
+
+    font-weight:600;
+
+}
+
+
+.logout:hover{
+
+    background:#ffe5e8 !important;
+
+}
+
+
+/* ==========================
+   ANIMASI
+========================== */
+
+@keyframes dropdownFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+.dropdown.active .dropdown-content,
+.akun.active .akun-menu{
+
+    animation:dropdownFade .25s ease;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.dropdown,
+.akun{
+
+    width:100%;
+
+}
+
+
+.dropbtn,
+.akun-btn{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+
+.dropdown-content,
+.akun-menu{
+
+    position:static;
+
+    width:100%;
+
+    margin-top:8px;
+
+    box-shadow:none;
+
+    border:1px solid #eee;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 1D
+   SEARCH BOX - HEADER ICON - BUTTON
+===================================================== */
+
+
+/* ==========================
+   SEARCH BOX
+========================== */
+
+.search-box{
+
+    display:flex;
+
+    align-items:center;
+
+    width:320px;
+
+    height:48px;
+
+    background:#fff;
+
+    border:2px solid #f3d7e4;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+
+.search-box:hover{
+
+    border-color:var(--primary);
+
+    box-shadow:0 8px 20px rgba(255,79,148,.15);
+
+}
+
+
+.search-box input{
+
+    flex:1;
+
+    height:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    padding:0 18px;
+
+    font-size:15px;
+
+    color:#444;
+
+}
+
+
+.search-box input::placeholder{
+
+    color:#999;
+
+}
+
+
+.search-box button{
+
+    width:52px;
+
+    height:48px;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.search-box button:hover{
+
+    background:var(--primary-dark);
+
+}
+
+
+/* ==========================
+   HEADER ICON
+========================== */
+
+.header-icon{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-left:25px;
+
+}
+
+
+.header-icon>a{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:46px;
+
+    height:46px;
+
+    background:#fff5f8;
+
+    border-radius:50%;
+
+    color:#444;
+
+    transition:.3s;
+
+}
+
+
+.header-icon>a:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+}
+
+
+.header-icon>a i{
+
+    font-size:20px;
+
+}
+
+
+/* ==========================
+   CART BADGE
+========================== */
+
+.header-icon span{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#ff3b30;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    border:2px solid #fff;
+
+}
+
+
+/* ==========================
+   LOGIN BUTTON
+========================== */
+
+.login-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    background:#fff;
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.login-btn:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+
+/* ==========================
+   REGISTER BUTTON
+========================== */
+
+.register-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.register-btn:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+
+}
+
+
+/* ==========================
+   ADMIN BUTTON
+========================== */
+
+.admin-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    background:#333;
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.admin-btn:hover{
+
+    background:#111;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* ==========================
+   BUTTON GROUP
+========================== */
+
+.auth-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.search-box{
+
+    width:100%;
+
+    max-width:500px;
+
 }
 
 
 .header-icon{
 
-display:flex;
-
-align-items:center;
-
-gap:18px;
+    margin-left:0;
 
 }
 
-.header-icon a{
 
-color:#444;
+.auth-button{
 
-font-weight:600;
+    width:100%;
 
-position:relative;
-
-}
-
-.header-icon i{
-
-font-size:22px;
+    justify-content:center;
 
 }
 
-.header-icon span{
+}
 
-position:absolute;
 
-top:-8px;
+@media(max-width:768px){
 
-right:-10px;
+.search-box{
 
-background:#ff4f94;
-
-color:white;
-
-width:20px;
-
-height:20px;
-
-border-radius:50%;
-
-font-size:12px;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
+    width:100%;
 
 }
+
+
+.header-icon{
+
+    justify-content:center;
+
+    width:100%;
+
+    gap:12px;
+
+}
+
 
 .login-btn,
 .register-btn,
 .admin-btn{
 
-padding:10px 20px;
+    width:100%;
 
-border-radius:30px;
-
-background:#ff4f94;
-
-color:white !important;
-
-transition:.3s;
+    justify-content:center;
 
 }
-
-.login-btn:hover,
-.register-btn:hover,
-.admin-btn:hover{
-
-background:#e93d80;
-
-}
-
-.akun{
-
-position:relative;
-
-cursor:pointer;
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-}
-
-.akun-menu{
-
-display:none;
-
-position:absolute;
-
-top:40px;
-
-right:0;
-
-width:220px;
-
-background:white;
-
-box-shadow:0 8px 25px rgba(0,0,0,.12);
-
-border-radius:12px;
-
-overflow:hidden;
-
-z-index:999;
-
-}
-
-.akun:hover .akun-menu{
-
-display:block;
-
-}
-
-.akun-menu a{
-
-display:block;
-
-padding:14px;
-
-color:#444;
-
-}
-
-.akun-menu a:hover{
-
-background:#fff1f7;
-
-color:#ff4f94;
 
 }
 
 
-/*========================
-FOOTER
-========================*/
+@media(max-width:576px){
 
-footer{
+.search-box{
 
-background:#222;
-
-color:#fff;
-
-margin-top:80px;
-
-padding:70px 0 20px;
+    height:45px;
 
 }
 
-.footer-grid{
 
-display:grid;
+.search-box button{
 
-grid-template-columns:
+    width:48px;
 
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:40px;
+    height:45px;
 
 }
 
-.footer-item h3{
 
-margin-bottom:20px;
+.header-icon>a{
 
-color:#ff8ab8;
+    width:42px;
 
-}
-
-.footer-item p{
-
-line-height:1.8;
-
-color:#ddd;
+    height:42px;
 
 }
 
-.footer-item a{
+}
 
-display:block;
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 1E
+   HERO SECTION
+===================================================== */
 
-margin:12px 0;
+/* ==========================
+   HERO
+========================== */
 
-color:#ddd;
+.hero{
 
-transition:.3s;
+    background:linear-gradient(135deg,#fff6fa,#ffe4ef);
+
+    padding:90px 0;
+
+    overflow:hidden;
 
 }
 
-.footer-item a:hover{
 
-color:#ff8ab8;
+/* ==========================
+   HERO GRID
+========================== */
 
-padding-left:8px;
+.hero-grid{
 
-}
+    display:grid;
 
-.footer-logo{
+    grid-template-columns:1fr 1fr;
 
-width:90px;
+    align-items:center;
 
-margin-bottom:20px;
-
-}
-
-.footer-item i{
-
-color:#ff8ab8;
-
-margin-right:10px;
+    gap:60px;
 
 }
 
-footer hr{
 
-margin:40px 0 20px;
+/* ==========================
+   HERO CONTENT
+========================== */
 
-border:none;
+.hero-content h1{
 
-border-top:1px solid rgba(255,255,255,.15);
+    font-size:52px;
 
-}
+    line-height:1.2;
 
-.copyright{
+    color:#ff4f94;
 
-text-align:center;
+    margin-bottom:20px;
 
-color:#bbb;
-
-font-size:15px;
-
-}
-
-/*====================================
-PRODUK TERLARIS
-====================================*/
-
-.best-seller{
-
-background:#fff;
-
-padding:90px 0;
+    font-weight:700;
 
 }
 
-.best-seller .card{
 
-position:relative;
+.hero-content p{
 
-overflow:hidden;
+    font-size:18px;
 
-}
+    color:#666;
 
-.best-seller .badge{
+    line-height:1.8;
 
-position:absolute;
-
-top:15px;
-
-left:15px;
-
-background:#ff4f94;
-
-color:white;
-
-padding:8px 15px;
-
-border-radius:30px;
-
-font-size:14px;
-
-font-weight:bold;
-
-z-index:10;
+    margin-bottom:35px;
 
 }
 
-.best-seller .card img{
 
-height:270px;
+/* ==========================
+   HERO BUTTON
+========================== */
 
-object-fit:cover;
+.hero-content .btn-primary{
 
-transition:.4s;
+    display:inline-block;
 
-}
+    padding:15px 35px;
 
-.best-seller .card:hover img{
+    background:#ff4f94;
 
-transform:scale(1.08);
+    color:#fff;
 
-}
+    border-radius:40px;
 
-.best-seller .price{
+    font-weight:600;
 
-font-size:26px;
+    transition:.3s;
 
-color:#ff4f94;
-
-font-weight:bold;
-
-margin:15px 0;
+    box-shadow:0 10px 25px rgba(255,79,148,.25);
 
 }
 
-/*=========================
-PROMO
-=========================*/
+
+.hero-content .btn-primary:hover{
+
+    background:#e63d81;
+
+    transform:translateY(-4px);
+
+}
+
+
+/* ==========================
+   HERO IMAGE
+========================== */
+
+.hero-image{
+
+    text-align:center;
+
+}
+
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:520px;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+    transition:.4s;
+
+}
+
+
+.hero-image img:hover{
+
+    transform:scale(1.03);
+
+}
+
+
+/* ==========================
+   HERO BADGE
+========================== */
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#fff;
+
+    color:#ff4f94;
+
+    border-radius:50px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================
+   HERO INFO
+========================== */
+
+.hero-info{
+
+    display:flex;
+
+    gap:25px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.hero-info-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#fff;
+
+    padding:15px 20px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+.hero-info-box i{
+
+    width:45px;
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ffe4ef;
+
+    color:#ff4f94;
+
+    border-radius:50%;
+
+    font-size:20px;
+
+}
+
+
+.hero-info-box h4{
+
+    font-size:16px;
+
+    color:#333;
+
+}
+
+
+.hero-info-box p{
+
+    margin:0;
+
+    font-size:14px;
+
+    color:#777;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.hero-grid{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.hero-content h1{
+
+    font-size:42px;
+
+}
+
+.hero-info{
+
+    justify-content:center;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.hero{
+
+    padding:70px 0;
+
+}
+
+.hero-content h1{
+
+    font-size:34px;
+
+}
+
+.hero-content p{
+
+    font-size:16px;
+
+}
+
+.hero-image img{
+
+    max-width:350px;
+
+}
+
+.hero-info{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.hero-info-box{
+
+    width:100%;
+
+    max-width:320px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 2A
+   SECTION TITLE
+===================================================== */
+
+/* ==========================
+   SECTION
+========================== */
+
+.section{
+
+    padding:90px 0;
+
+}
+
+
+/* ==========================
+   SECTION TITLE
+========================== */
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+
+/* Badge kecil di atas judul */
+
+.section-title span{
+
+    display:inline-block;
+
+    padding:8px 22px;
+
+    border-radius:30px;
+
+    background:#ffe5ef;
+
+    color:var(--primary);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+/* Judul */
+
+.section-title h2{
+
+    font-size:42px;
+
+    color:var(--primary);
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+    line-height:1.3;
+
+}
+
+
+/* Garis bawah */
+
+.section-title h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:4px;
+
+    margin:15px auto 0;
+
+    border-radius:20px;
+
+    background:var(--primary);
+
+}
+
+
+/* Deskripsi */
+
+.section-title p{
+
+    width:700px;
+
+    max-width:100%;
+
+    margin:auto;
+
+    color:#777;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================
+   ALIGN LEFT
+========================== */
+
+.section-title.left{
+
+    text-align:left;
+
+}
+
+
+.section-title.left h2::after{
+
+    margin:15px 0 0;
+
+}
+
+
+/* ==========================
+   LIGHT BACKGROUND
+========================== */
+
+.section-light{
+
+    background:#fff8fb;
+
+}
+
+
+/* ==========================
+   WHITE BACKGROUND
+========================== */
+
+.section-white{
+
+    background:#fff;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.section{
+
+    padding:70px 0;
+
+}
+
+.section-title h2{
+
+    font-size:36px;
+
+}
+
+.section-title p{
+
+    width:100%;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.section{
+
+    padding:60px 0;
+
+}
+
+.section-title{
+
+    margin-bottom:40px;
+
+}
+
+.section-title span{
+
+    font-size:13px;
+
+}
+
+.section-title h2{
+
+    font-size:30px;
+
+}
+
+.section-title p{
+
+    font-size:15px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 2B
+   PRODUCT CARD & PRODUCT GRID
+===================================================== */
+
+/* ==========================
+   PRODUCT GRID
+========================== */
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   PRODUCT CARD
+========================== */
+
+.card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+
+/* ==========================
+   PRODUCT IMAGE
+========================== */
+
+.card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    transition:.35s;
+
+}
+
+.card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ==========================
+   CARD BODY
+========================== */
+
+.card-body{
+
+    padding:22px;
+
+}
+
+
+/* ==========================
+   BADGE
+========================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:7px 16px;
+
+    background:#ffe4ef;
+
+    color:#ff4f94;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+/* ==========================
+   PRODUCT NAME
+========================== */
+
+.card h3{
+
+    font-size:22px;
+
+    color:#333;
+
+    margin-bottom:12px;
+
+    line-height:1.4;
+
+}
+
+
+/* ==========================
+   PRICE
+========================== */
+
+.price{
+
+    color:#ff4f94;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+
+/* ==========================
+   DESCRIPTION
+========================== */
+
+.card p{
+
+    color:#777;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+}
+
+
+/* ==========================
+   BUTTON AREA
+========================== */
+
+.produk-button{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+/* ==========================
+   DETAIL BUTTON
+========================== */
+
+.btn-detail{
+
+    flex:1;
+
+    text-align:center;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-detail:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* ==========================
+   CART BUTTON
+========================== */
+
+.btn-cart{
+
+    width:52px;
+
+    height:48px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#333;
+
+    color:#fff;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.btn-cart:hover{
+
+    background:#000;
+
+}
+
+
+/* ==========================
+   CARD FOOTER
+========================== */
+
+.card-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:15px;
+
+}
+
+
+/* ==========================
+   STOCK
+========================== */
+
+.stock{
+
+    font-size:14px;
+
+    color:#28a745;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================
+   EMPTY PRODUCT
+========================== */
+
+.empty-product{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.empty-product i{
+
+    font-size:70px;
+
+    color:#ff4f94;
+
+    margin-bottom:20px;
+
+}
+
+.empty-product h3{
+
+    margin-bottom:15px;
+
+    color:#444;
+
+}
+
+.empty-product p{
+
+    color:#777;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.product-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.product-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.card img{
+
+    height:230px;
+
+}
+
+.card h3{
+
+    font-size:20px;
+
+}
+
+.price{
+
+    font-size:22px;
+
+}
+
+.produk-button{
+
+    flex-direction:column;
+
+}
+
+.btn-cart{
+
+    width:100%;
+
+    height:48px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 2C
+   PROMO MINGGUAN
+===================================================== */
+
+/* ==========================
+   PROMO SECTION
+========================== */
 
 .promo-section{
 
-background:#fff5f8;
+    padding:90px 0;
+
+    background:#fff5f9;
 
 }
 
+
+/* ==========================
+   PROMO GRID
+========================== */
+
+.promo-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   PROMO CARD
+========================== */
+
 .promo-card{
 
-background:white;
+    position:relative;
 
-border-radius:18px;
+    background:#fff;
 
-overflow:hidden;
+    border-radius:20px;
 
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+    overflow:hidden;
 
-position:relative;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-transition:.3s;
+    transition:.35s;
 
 }
 
 .promo-card:hover{
 
-transform:translateY(-8px);
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
 
 }
+
+
+/* ==========================
+   PROMO IMAGE
+========================== */
+
+.promo-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    transition:.4s;
+
+}
+
+.promo-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ==========================
+   DISCOUNT BADGE
+========================== */
 
 .discount{
 
-position:absolute;
+    position:absolute;
 
-top:15px;
+    top:18px;
 
-left:15px;
+    left:18px;
 
-background:#ff4f94;
+    background:#ff4f94;
 
-color:white;
+    color:#fff;
 
-padding:8px 14px;
+    padding:8px 16px;
 
-border-radius:25px;
+    border-radius:30px;
 
-font-weight:bold;
+    font-size:14px;
+
+    font-weight:bold;
+
+    z-index:2;
+
+    box-shadow:0 6px 15px rgba(255,79,148,.3);
 
 }
 
+
+/* ==========================
+   PROMO BODY
+========================== */
+
+.promo-card .card-body{
+
+    padding:22px;
+
+}
+
+
+/* ==========================
+   PRODUCT NAME
+========================== */
+
+.promo-card h3{
+
+    font-size:22px;
+
+    color:#333;
+
+    margin-bottom:12px;
+
+}
+
+
+/* ==========================
+   PRICE
+========================== */
+
 .old-price{
 
-text-decoration:line-through;
+    color:#999;
 
-color:#999;
+    text-decoration:line-through;
+
+    font-size:16px;
+
+    margin-bottom:8px;
 
 }
 
 .new-price{
 
-font-size:28px;
+    color:#ff4f94;
 
-color:#ff4f94;
+    font-size:28px;
 
-font-weight:bold;
+    font-weight:bold;
 
-margin-bottom:15px;
+    margin-bottom:20px;
 
 }
 
-/*=========================
-TESTIMONI
-=========================*/
+
+/* ==========================
+   BUTTON
+========================== */
+
+.promo-card .btn-primary{
+
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.promo-card .btn-primary:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* ==========================
+   HOT LABEL
+========================== */
+
+.hot-label{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#ffd700;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.promo-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.promo-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.promo-card img{
+
+    height:230px;
+
+}
+
+.promo-card h3{
+
+    font-size:20px;
+
+}
+
+.new-price{
+
+    font-size:24px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 2D
+   TESTIMONI PELANGGAN
+===================================================== */
+
+/* ==========================
+   TESTIMONIAL SECTION
+========================== */
 
 .testimonial-section{
 
-background:white;
+    padding:90px 0;
+
+    background:#ffffff;
 
 }
 
+
+/* ==========================
+   TESTIMONIAL GRID
+========================== */
+
+.testimonial-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   TESTIMONIAL CARD
+========================== */
+
 .testimonial{
 
-padding:30px;
+    background:#fff;
 
-text-align:center;
+    border-radius:20px;
 
-background:#fff;
+    padding:35px 30px;
 
-border-radius:20px;
+    text-align:center;
 
-box-shadow:0 8px 25px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-transition:.3s;
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
 
 }
 
 .testimonial:hover{
 
-transform:translateY(-8px);
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+
+/* ==========================
+   QUOTE ICON
+========================== */
+
+.testimonial::before{
+
+    content:"❝";
+
+    position:absolute;
+
+    top:15px;
+
+    left:20px;
+
+    font-size:60px;
+
+    color:#ffe2ef;
+
+    font-family:serif;
+
+}
+
+
+/* ==========================
+   PHOTO
+========================== */
+
+.testimonial img{
+
+    width:95px;
+
+    height:95px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #ffe4ef;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================
+   STARS
+========================== */
+
+.stars{
+
+    color:#ffc107;
+
+    font-size:22px;
+
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+
+}
+
+
+/* ==========================
+   CUSTOMER NAME
+========================== */
+
+.testimonial h3{
+
+    color:#333;
+
+    font-size:22px;
+
+    margin-bottom:12px;
+
+}
+
+
+/* ==========================
+   CUSTOMER REVIEW
+========================== */
+
+.testimonial p{
+
+    color:#666;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+
+/* ==========================
+   VERIFIED LABEL
+========================== */
+
+.verified{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    background:#ffeaf3;
+
+    color:#ff4f94;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.testimonial-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.testimonial-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.testimonial{
+
+    padding:30px 22px;
 
 }
 
 .testimonial img{
 
-width:100px;
+    width:80px;
 
-height:100px;
+    height:80px;
 
-border-radius:50%;
+}
 
-margin:auto;
+.testimonial h3{
 
-margin-bottom:20px;
-
-object-fit:cover;
+    font-size:20px;
 
 }
 
 .stars{
 
-color:#ffc107;
-
-font-size:24px;
-
-margin:15px 0;
+    font-size:20px;
 
 }
 
-/*=========================
-GALERI
-=========================*/
+}
 
-.product-grid .card img{
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 2E
+   FOOTER & RESPONSIVE AKHIR
+===================================================== */
 
-transition:.4s;
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+
+    background:#2b2b2b;
+
+    color:#ffffff;
+
+    padding:70px 0 20px;
+
+    margin-top:80px;
 
 }
 
-.product-grid .card:hover img{
 
-transform:scale(1.08);
+/* ==========================
+   FOOTER GRID
+========================== */
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:40px;
+
+}
+
+
+/* ==========================
+   FOOTER ITEM
+========================== */
+
+.footer-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.footer-item h2{
+
+    color:#ffffff;
+
+    margin-bottom:15px;
+
+    font-size:26px;
+
+}
+
+
+.footer-item h3{
+
+    color:#ff8ab8;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+}
+
+
+.footer-item p{
+
+    color:#dddddd;
+
+    line-height:1.9;
+
+    margin-bottom:12px;
+
+}
+
+
+/* ==========================
+   FOOTER LOGO
+========================== */
+
+.footer-logo{
+
+    width:90px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================
+   FOOTER LINK
+========================== */
+
+.footer-item a{
+
+    color:#dddddd;
+
+    margin:10px 0;
+
+    transition:.3s;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.footer-item a:hover{
+
+    color:#ff8ab8;
+
+    padding-left:8px;
+
+}
+
+
+/* ==========================
+   FOOTER ICON
+========================== */
+
+.footer-item i{
+
+    color:#ff8ab8;
+
+    width:22px;
+
+    text-align:center;
+
+}
+
+
+/* ==========================
+   FOOTER HR
+========================== */
+
+footer hr{
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.12);
+
+    margin:40px 0 25px;
+
+}
+
+
+/* ==========================
+   COPYRIGHT
+========================== */
+
+.copyright{
+
+    text-align:center;
+
+    color:#bbbbbb;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================
+   SOCIAL ICON
+========================== */
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+.footer-social a{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#444;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    transition:.3s;
+
+}
+
+
+.footer-social a:hover{
+
+    background:#ff4f94;
+
+    transform:translateY(-5px);
+
+}
+
+
+/* ==========================
+   BACK TO TOP
+========================== */
+
+.back-top{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+
+.back-top:hover{
+
+    background:#e63d81;
+
+    transform:translateY(-5px);
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1200px){
+
+.container{
+
+    width:95%;
+
+}
+
+}
+
+
+@media(max-width:992px){
+
+.footer-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.section{
+
+    padding:70px 0;
+
+}
+
+.hero-grid,
+.about-grid,
+.contact-wrapper,
+.detail-container{
+
+    grid-template-columns:1fr;
+
+}
+
+.hero{
+
+    text-align:center;
+
+}
+
+.hero-image{
+
+    margin-top:30px;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.footer-grid{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.footer-item{
+
+    align-items:center;
+
+}
+
+.footer-item a{
+
+    justify-content:center;
+
+}
+
+.footer-social{
+
+    justify-content:center;
+
+}
+
+.section-title h2{
+
+    font-size:30px;
+
+}
+
+.hero h1{
+
+    font-size:34px;
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+.search-box{
+
+    width:100%;
+
+}
+
+.newsletter form{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.newsletter input{
+
+    width:100%;
+
+    border-radius:30px;
+
+}
+
+.newsletter button{
+
+    width:100%;
+
+    border-radius:30px;
+
+}
+
+.back-top{
+
+    width:48px;
+
+    height:48px;
+
+    font-size:18px;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.product-grid,
+.promo-grid,
+.testimonial-grid,
+.contact-grid,
+.gallery-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.btn-primary{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+.hero{
+
+    padding:60px 0;
+
+}
+
+.section{
+
+    padding:60px 0;
+
+}
+
+.logo{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.logo img{
+
+    width:60px;
+
+}
+
+nav{
+
+    flex-direction:column;
+
+    width:100%;
+
+    gap:10px;
+
+}
+
+nav a{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.header-icon{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+}
+
+
+/* ==========================
+   SMOOTH ANIMATION
+========================== */
+
+.fade-up{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 3
+   HALAMAN PRODUK
+   (Filter, Product Card, Pagination)
+===================================================== */
+
+/* ==========================
+   HEADER HALAMAN
+========================== */
+
+.page-header{
+
+    background:linear-gradient(135deg,#fff0f6,#ffe4ef);
+
+    padding:70px 0;
+
+    text-align:center;
+
+}
+
+.page-header h1{
+
+    font-size:42px;
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.page-header p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================
+   FILTER PRODUK
+========================== */
+
+.filter-box{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin:40px 0;
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+/* Input */
+
+.filter-box input{
+
+    flex:1;
+
+    min-width:250px;
+
+    padding:14px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.filter-box input:focus{
+
+    border-color:#ff4f94;
+
+}
+
+
+/* Select */
+
+.filter-box select{
+
+    min-width:220px;
+
+    padding:14px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    cursor:pointer;
+
+}
+
+.filter-box select:focus{
+
+    border-color:#ff4f94;
+
+}
+
+
+/* Tombol */
+
+.filter-box button{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:14px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.filter-box button:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* ==========================
+   PRODUCT GRID
+========================== */
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   PRODUCT CARD
+========================== */
+
+.product-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+/* Gambar */
+
+.product-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    transition:.4s;
+
+}
+
+.product-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* Badge */
+
+.product-card .badge{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+
+/* Body */
+
+.product-body{
+
+    padding:22px;
+
+}
+
+
+/* Judul */
+
+.product-body h3{
+
+    font-size:22px;
+
+    color:#333;
+
+    margin-bottom:12px;
+
+}
+
+
+/* Harga */
+
+.product-price{
+
+    color:#ff4f94;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+
+/* Deskripsi */
+
+.product-body p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================
+   BUTTON PRODUK
+========================== */
+
+.product-button{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+/* Detail */
+
+.btn-detail{
+
+    flex:1;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.btn-detail:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* Keranjang */
+
+.btn-cart{
+
+    flex:1;
+
+    background:#333;
+
+    color:#fff;
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.btn-cart:hover{
+
+    background:#000;
+
+}
+
+
+/* ==========================
+   TIDAK ADA PRODUK
+========================== */
+
+.empty-product{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    color:#777;
+
+}
+
+.empty-product i{
+
+    font-size:70px;
+
+    color:#ffb7cf;
+
+    margin-bottom:20px;
+
+}
+
+.empty-product h3{
+
+    margin-bottom:15px;
+
+    color:#444;
+
+}
+
+
+/* ==========================
+   PAGINATION
+========================== */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:60px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.pagination a{
+
+    width:45px;
+
+    height:45px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#555;
+
+    font-weight:bold;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+.pagination a:hover{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+.pagination a.active{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.filter-box{
+
+    flex-direction:column;
+
+}
+
+.filter-box input,
+.filter-box select,
+.filter-box button{
+
+    width:100%;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.page-header h1{
+
+    font-size:32px;
+
+}
+
+.product-button{
+
+    flex-direction:column;
+
+}
+
+.btn-detail,
+.btn-cart{
+
+    width:100%;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.product-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.page-header{
+
+    padding:50px 0;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 4
+   DETAIL PRODUK
+===================================================== */
+
+/* ==========================
+   DETAIL SECTION
+========================== */
+
+.detail-section{
+
+    padding:80px 0;
+
+    background:#fafafa;
+
+}
+
+/* ==========================
+   CONTAINER
+========================== */
+
+.detail-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:flex-start;
+
+}
+
+/* ==========================
+   GAMBAR PRODUK
+========================== */
+
+.detail-image{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.detail-image img{
+
+    width:100%;
+
+    border-radius:15px;
+
+    transition:.4s;
+
+}
+
+.detail-image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================
+   THUMBNAIL
+========================== */
+
+.thumbnail-list{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.thumbnail-list img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    border:2px solid transparent;
+
+    transition:.3s;
+
+}
+
+.thumbnail-list img:hover{
+
+    border-color:#ff4f94;
+
+}
+
+/* ==========================
+   INFO PRODUK
+========================== */
+
+.detail-info{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* ==========================
+   KATEGORI
+========================== */
+
+.kategori{
+
+    display:inline-block;
+
+    background:#ffe3ef;
+
+    color:#ff4f94;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================
+   JUDUL
+========================== */
+
+.detail-info h1{
+
+    font-size:40px;
+
+    color:#333;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================
+   HARGA
+========================== */
+
+.harga{
+
+    color:#ff4f94;
+
+    font-size:38px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================
+   STOK
+========================== */
+
+.stok{
+
+    color:#666;
+
+    font-size:17px;
+
+    margin-bottom:25px;
+
+}
+
+.stok span{
+
+    color:#28a745;
+
+    font-weight:bold;
+
+}
+
+/* ==========================
+   RATING
+========================== */
+
+.rating{
+
+    margin-bottom:20px;
+
+    color:#ffc107;
+
+    font-size:18px;
+
+}
+
+.rating span{
+
+    color:#666;
+
+    margin-left:10px;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   DESKRIPSI
+========================== */
+
+.deskripsi{
+
+    color:#555;
+
+    line-height:1.9;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+   JUMLAH
+========================== */
+
+.qty-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+.qty-box label{
+
+    font-weight:bold;
+
+}
+
+.qty-box input{
+
+    width:100px;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   BUTTON
+========================== */
+
+.detail-button{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.detail-button .btn-cart{
+
+    flex:1;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.detail-button .btn-cart:hover{
+
+    background:#e63d81;
+
+}
+
+.detail-button .btn-buy{
+
+    flex:1;
+
+    background:#333;
+
+    color:#fff;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.detail-button .btn-buy:hover{
+
+    background:#111;
+
+}
+
+/* ==========================
+   SPESIFIKASI
+========================== */
+
+.specification{
+
+    margin-top:40px;
+
+    border-top:1px solid #eee;
+
+    padding-top:30px;
+
+}
+
+.specification h3{
+
+    margin-bottom:20px;
+
+    color:#ff4f94;
+
+}
+
+.specification table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.specification td{
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.specification td:first-child{
+
+    font-weight:bold;
+
+    width:180px;
+
+}
+
+/* ==========================
+   RELATED PRODUCT
+========================== */
+
+.related-product{
+
+    padding:80px 0;
+
+}
+
+.related-product h2{
+
+    text-align:center;
+
+    color:#ff4f94;
+
+    margin-bottom:40px;
+
+    font-size:34px;
+
+}
+
+/* ==========================
+   REVIEW
+========================== */
+
+.review-section{
+
+    background:#fff5f8;
+
+    padding:80px 0;
+
+}
+
+.review-title{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.review-title h2{
+
+    color:#ff4f94;
+
+}
+
+.review-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.review-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.review-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.review-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.review-header img{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.review-header h4{
+
+    margin-bottom:5px;
+
+}
+
+.review-star{
+
+    color:#ffc107;
+
+    font-size:18px;
+
+}
+
+.review-card p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+/* ==========================
+   SHARE
+========================== */
+
+.share-product{
+
+    margin-top:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.share-product a{
+
+    width:42px;
+
+    height:42px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+.share-product a:hover{
+
+    background:#e63d81;
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.detail-container{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.detail-info h1{
+
+    font-size:30px;
+
+}
+
+.harga{
+
+    font-size:30px;
+
+}
+
+.detail-button{
+
+    flex-direction:column;
+
+}
+
+.detail-button .btn-cart,
+
+.detail-button .btn-buy{
+
+    width:100%;
+
+}
+
+.qty-box{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.thumbnail-list{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.specification td:first-child{
+
+    width:130px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.detail-section{
+
+    padding:60px 0;
+
+}
+
+.review-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.share-product{
+
+    justify-content:center;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 5
+   KERANJANG & CHECKOUT
+===================================================== */
+
+
+/* =====================================
+   HALAMAN KERANJANG
+===================================== */
+
+.cart-section{
+
+    padding:80px 0;
+
+    background:#fafafa;
+
+}
+
+.cart-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.cart-title h2{
+
+    font-size:40px;
+
+    color:#ff4f94;
+
+}
+
+.cart-title p{
+
+    color:#777;
+
+    margin-top:10px;
+
+}
+
+
+/* =====================================
+   TABEL KERANJANG
+===================================== */
+
+.cart-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.cart-table th{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+.cart-table td{
+
+    padding:20px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.cart-table tr:last-child td{
+
+    border:none;
+
+}
+
+
+/* =====================================
+   PRODUK DI KERANJANG
+===================================== */
+
+.cart-product{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.cart-product img{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:15px;
+
+    object-fit:cover;
+
+}
+
+.cart-product h4{
+
+    margin-bottom:8px;
+
+    color:#333;
+
+}
+
+.cart-product small{
+
+    color:#777;
+
+}
+
+
+/* =====================================
+   INPUT JUMLAH
+===================================== */
+
+.qty-input{
+
+    width:75px;
+
+    padding:10px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    outline:none;
+
+}
+
+.qty-input:focus{
+
+    border-color:#ff4f94;
+
+}
+
+
+/* =====================================
+   HARGA
+===================================== */
+
+.cart-price{
+
+    color:#ff4f94;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================
+   TOMBOL HAPUS
+===================================== */
+
+.btn-delete{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.btn-delete:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* =====================================
+   TOTAL BELANJA
+===================================== */
+
+.cart-total{
+
+    margin-top:35px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.total-card{
+
+    width:380px;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.total-card h3{
+
+    color:#ff4f94;
+
+    margin-bottom:25px;
+
+}
+
+.total-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:15px 0;
+
+}
+
+.total-price{
+
+    color:#ff4f94;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================
+   BUTTON KERANJANG
+===================================== */
+
+.cart-action{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn-shop{
+
+    flex:1;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#444;
+
+    color:#fff;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.btn-shop:hover{
+
+    background:#222;
+
+}
+
+.btn-checkout{
+
+    flex:1;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.btn-checkout:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* =====================================
+   CHECKOUT
+===================================== */
+
+.checkout-section{
+
+    padding:80px 0;
+
+    background:#fff5f8;
+
+}
+
+.checkout-wrapper{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:35px;
+
+}
+
+
+/* =====================================
+   FORM CHECKOUT
+===================================== */
+
+.checkout-form{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.checkout-form h2{
+
+    color:#ff4f94;
+
+    margin-bottom:30px;
+
+}
+
+.checkout-form label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.checkout-form input,
+
+.checkout-form textarea,
+
+.checkout-form select{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.checkout-form input:focus,
+
+.checkout-form textarea:focus,
+
+.checkout-form select:focus{
+
+    border-color:#ff4f94;
+
+}
+
+.checkout-form textarea{
+
+    resize:none;
+
+    min-height:120px;
+
+}
+
+
+/* =====================================
+   METODE PEMBAYARAN
+===================================== */
+
+.payment-box{
+
+    background:#fff9fc;
+
+    border:1px solid #ffd2e3;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+}
+
+.payment-box h4{
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.payment-box p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================
+   UPLOAD BUKTI
+===================================== */
+
+.upload-box{
+
+    border:2px dashed #ffb6d0;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:#fff;
+
+    margin-bottom:25px;
+
+}
+
+.upload-box input{
+
+    margin-top:15px;
+
+}
+
+
+/* =====================================
+   RINGKASAN PESANAN
+===================================== */
+
+.order-summary{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:100px;
+
+}
+
+.order-summary h3{
+
+    color:#ff4f94;
+
+    margin-bottom:25px;
+
+}
+
+.summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+}
+
+.summary-item strong{
+
+    color:#333;
+
+}
+
+.summary-total{
+
+    border-top:1px solid #eee;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#ff4f94;
+
+}
+
+
+/* =====================================
+   BUTTON BAYAR
+===================================== */
+
+.btn-payment{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-payment:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* =====================================
+   CHECKOUT SUCCESS
+===================================== */
+
+.success-box{
+
+    background:#fff;
+
+    padding:60px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.success-box i{
+
+    font-size:90px;
+
+    color:#28a745;
+
+    margin-bottom:25px;
+
+}
+
+.success-box h2{
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.success-box p{
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+.checkout-wrapper{
+
+    grid-template-columns:1fr;
+
+}
+
+.cart-total{
+
+    justify-content:center;
+
+}
+
+.total-card{
+
+    width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.cart-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+.cart-product{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.cart-action{
+
+    flex-direction:column;
+
+}
+
+.btn-shop,
+
+.btn-checkout{
+
+    width:100%;
+
+}
+
+.checkout-form{
+
+    padding:25px;
+
+}
+
+.order-summary{
+
+    position:static;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.cart-title h2{
+
+    font-size:30px;
+
+}
+
+.checkout-form h2{
+
+    font-size:26px;
+
+}
+
+.success-box{
+
+    padding:35px 20px;
+
+}
+
+.success-box i{
+
+    font-size:70px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 6
+   DASHBOARD PELANGGAN
+===================================================== */
+
+/* ==========================
+   DASHBOARD
+========================== */
+
+.dashboard{
+
+    padding:80px 0;
+
+    background:#fafafa;
+
+}
+
+.dashboard-wrapper{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:35px;
+
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    height:max-content;
+
+}
+
+.sidebar-user{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.sidebar-user img{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #ffe4ef;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+.sidebar-user h3{
+
+    color:#ff4f94;
+
+    margin-bottom:5px;
+
+}
+
+.sidebar-user p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================
+   MENU SIDEBAR
+========================== */
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    color:#555;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.sidebar-menu a i{
+
+    width:25px;
+
+    text-align:center;
+
+}
+
+.sidebar-menu a:hover,
+
+.sidebar-menu a.active{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+/* ==========================
+   CONTENT
+========================== */
+
+.dashboard-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+/* ==========================
+   CARD
+========================== */
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card h2{
+
+    color:#ff4f94;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================
+   INFO PROFILE
+========================== */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.profile-item{
+
+    background:#fff7fb;
+
+    border-radius:15px;
+
+    padding:18px;
+
+}
+
+.profile-item label{
+
+    display:block;
+
+    font-size:14px;
+
+    color:#888;
+
+    margin-bottom:8px;
+
+}
+
+.profile-item p{
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#333;
+
+}
+
+
+/* ==========================
+   FORM EDIT
+========================== */
+
+.profile-form{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.profile-form label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    display:block;
+
+}
+
+.profile-form input,
+
+.profile-form textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.profile-form input:focus,
+
+.profile-form textarea:focus{
+
+    border-color:#ff4f94;
+
+}
+
+
+/* ==========================
+   BUTTON
+========================== */
+
+.btn-save{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:15px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-save:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* ==========================
+   RIWAYAT PESANAN
+========================== */
+
+.order-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.order-table th{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:15px;
+
+}
+
+.order-table td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+
+}
+
+
+/* ==========================
+   STATUS PESANAN
+========================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.status-menunggu{
+
+    background:#ff9800;
+
+}
+
+.status-diproses{
+
+    background:#2196f3;
+
+}
+
+.status-dikirim{
+
+    background:#9c27b0;
+
+}
+
+.status-selesai{
+
+    background:#4caf50;
+
+}
+
+.status-batal{
+
+    background:#f44336;
+
+}
+
+
+/* ==========================
+   UPLOAD PEMBAYARAN
+========================== */
+
+.upload-payment{
+
+    border:2px dashed #ffb7d4;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    background:#fff8fb;
+
+}
+
+.upload-payment input{
+
+    margin-top:20px;
+
+}
+
+
+/* ==========================
+   STATISTIK
+========================== */
+
+.dashboard-stat{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.stat-box{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-box i{
+
+    font-size:38px;
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.stat-box h3{
+
+    font-size:34px;
+
+    color:#333;
+
+}
+
+.stat-box p{
+
+    color:#777;
+
+}
+
+
+/* ==========================
+   EMPTY ORDER
+========================== */
+
+.empty-order{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.empty-order i{
+
+    font-size:70px;
+
+    color:#ffb7d4;
+
+    margin-bottom:20px;
+
+}
+
+.empty-order h3{
+
+    color:#444;
+
+    margin-bottom:15px;
+
+}
+
+.empty-order p{
+
+    color:#777;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.dashboard-wrapper{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboard-stat{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.profile-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.order-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+.sidebar{
+
+    text-align:center;
+
+}
+
+.sidebar-menu a{
+
+    justify-content:center;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.dashboard-stat{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboard-card{
+
+    padding:20px;
+
+}
+
+.sidebar{
+
+    padding:20px;
+
+}
+
+.sidebar-user img{
+
+    width:90px;
+
+    height:90px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 7
+   DASHBOARD ADMIN
+===================================================== */
+
+
+/* =====================================
+   ADMIN LAYOUT
+===================================== */
+
+.admin-page{
+
+    background:#f7f7f7;
+
+    min-height:100vh;
+
+    display:flex;
+
+}
+
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.admin-sidebar{
+
+    width:280px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    overflow-y:auto;
+
+    padding:30px 20px;
+
+    box-shadow:5px 0 20px rgba(0,0,0,.08);
+
+}
+
+
+.admin-logo{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.admin-logo img{
+
+    width:90px;
+
+    margin-bottom:15px;
+
+}
+
+.admin-logo h2{
+
+    font-size:24px;
+
+    color:#fff;
+
+}
+
+.admin-logo p{
+
+    font-size:14px;
+
+    opacity:.8;
+
+}
+
+
+/* =====================================
+   MENU
+===================================== */
+
+.admin-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.admin-menu a{
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.admin-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+}
+
+.admin-menu a:hover,
+
+.admin-menu a.active{
+
+    background:#fff;
+
+    color:#ff4f94;
+
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.admin-content{
+
+    margin-left:280px;
+
+    padding:35px;
+
+    width:100%;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.admin-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.admin-header h1{
+
+    color:#333;
+
+}
+
+.admin-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.admin-profile img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+/* =====================================
+   DASHBOARD CARD
+===================================== */
+
+.admin-stat{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card i{
+
+    font-size:40px;
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h2{
+
+    font-size:34px;
+
+    color:#333;
+
+}
+
+.stat-card p{
+
+    color:#777;
+
+}
+
+
+/* =====================================
+   CARD
+===================================== */
+
+.admin-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.admin-card h2{
+
+    color:#ff4f94;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =====================================
+   TABLE
+===================================== */
+
+.admin-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.admin-table th{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+.admin-table td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+
+}
+
+.admin-table tr:hover{
+
+    background:#fff8fb;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.btn-add{
+
+    display:inline-block;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    margin-bottom:20px;
+
+    transition:.3s;
+
+}
+
+.btn-add:hover{
+
+    background:#e63d81;
+
+}
+
+.btn-edit{
+
+    background:#ffc107;
+
+    color:#333;
+
+    padding:8px 15px;
+
+    border-radius:8px;
+
+}
+
+.btn-edit:hover{
+
+    background:#e0a800;
+
+}
+
+.btn-delete{
+
+    background:#dc3545;
+
+    color:#fff;
+
+    padding:8px 15px;
+
+    border-radius:8px;
+
+}
+
+.btn-delete:hover{
+
+    background:#bb2d3b;
+
+}
+
+.btn-detail{
+
+    background:#17a2b8;
+
+    color:#fff;
+
+    padding:8px 15px;
+
+    border-radius:8px;
+
+}
+
+.btn-detail:hover{
+
+    background:#138496;
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.admin-form{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.admin-form label{
+
+    font-weight:600;
+
+}
+
+.admin-form input,
+
+.admin-form textarea,
+
+.admin-form select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+.admin-form input:focus,
+
+.admin-form textarea:focus,
+
+.admin-form select:focus{
+
+    border-color:#ff4f94;
+
+}
+
+.admin-form button{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.admin-form button:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:25px;
+
+    color:#fff;
+
+    font-size:13px;
+
+}
+
+.badge.pending{
+
+    background:#ff9800;
+
+}
+
+.badge.process{
+
+    background:#2196f3;
+
+}
+
+.badge.success{
+
+    background:#4caf50;
+
+}
+
+.badge.cancel{
+
+    background:#f44336;
+
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+.admin-search{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+    gap:20px;
+
+}
+
+.admin-search input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+.admin-search button{
+
+    padding:14px 30px;
+
+    border:none;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border-radius:10px;
+
+}
+
+
+/* =====================================
+   PAGINATION
+===================================== */
+
+.admin-pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:30px;
+
+}
+
+.admin-pagination a{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#333;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.admin-pagination a.active,
+
+.admin-pagination a:hover{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+/* =====================================
+   CHART
+===================================== */
+
+.chart-box{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    margin-top:30px;
+
+}
+
+.chart-box canvas{
+
+    width:100%;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:1100px){
+
+.admin-stat{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:900px){
+
+.admin-sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+}
+
+.admin-content{
+
+margin-left:0;
+
+}
+
+.admin-page{
+
+flex-direction:column;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.admin-stat{
+
+grid-template-columns:1fr;
+
+}
+
+.admin-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.admin-search{
+
+flex-direction:column;
+
+}
+
+.admin-table{
+
+display:block;
+
+overflow-x:auto;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.admin-content{
+
+padding:20px;
+
+}
+
+.admin-card{
+
+padding:20px;
+
+}
+
+.btn-add{
+
+width:100%;
+
+text-align:center;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 8
+   LOGIN • REGISTER • FORGOT PASSWORD
+===================================================== */
+
+
+/* =====================================
+   AUTH SECTION
+===================================== */
+
+.auth-section{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:80px 20px;
+
+    background:linear-gradient(135deg,#fff6fa,#ffe4ef);
+
+}
+
+
+/* =====================================
+   AUTH CARD
+===================================== */
+
+.auth-card{
+
+    width:100%;
+    max-width:500px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+    animation:fadeUp .5s ease;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.auth-header{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:40px 30px;
+
+}
+
+.auth-header img{
+
+    width:90px;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+.auth-header h2{
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+}
+
+.auth-header p{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================
+   BODY
+===================================== */
+
+.auth-body{
+
+    padding:35px;
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.auth-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+.form-group label i{
+
+    color:#ff4f94;
+
+    margin-right:8px;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.form-group input:focus{
+
+    border-color:#ff4f94;
+
+    box-shadow:0 0 8px rgba(255,79,148,.2);
+
+}
+
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box input{
+
+    padding-right:50px;
+
+}
+
+.password-box i{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#999;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.auth-btn{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.auth-btn:hover{
+
+    background:#e63d81;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =====================================
+   OPTION
+===================================== */
+
+.auth-option{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:18px 0;
+
+    font-size:14px;
+
+}
+
+.auth-option a{
+
+    color:#ff4f94;
+
+    text-decoration:none;
+
+}
+
+.auth-option a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* =====================================
+   REMEMBER
+===================================== */
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:14px;
+
+}
+
+.remember input{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+
+/* =====================================
+   DIVIDER
+===================================== */
+
+.auth-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:30px 0;
+
+}
+
+.auth-divider::before,
+
+.auth-divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#ddd;
+
+}
+
+.auth-divider span{
+
+    margin:0 15px;
+
+    color:#888;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================
+   SOCIAL LOGIN
+===================================== */
+
+.social-login{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.social-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    text-decoration:none;
+
+    color:#444;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.social-btn:hover{
+
+    background:#fff2f7;
+
+}
+
+.social-btn img{
+
+    width:22px;
+
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.auth-footer{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#666;
+
+}
+
+.auth-footer a{
+
+    color:#ff4f94;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.auth-footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* =====================================
+   SUCCESS
+===================================== */
+
+.alert-success{
+
+    background:#e9fff2;
+
+    color:#198754;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================
+   ERROR
+===================================== */
+
+.alert-error{
+
+    background:#ffe9e9;
+
+    color:#dc3545;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================
+   FORGOT PASSWORD
+===================================== */
+
+.forgot-info{
+
+    background:#fff5f8;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================
+   OTP
+===================================== */
+
+.otp-group{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.otp-group input{
+
+    width:60px;
+
+    height:60px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+}
+
+
+/* =====================================
+   LOADING BUTTON
+===================================== */
+
+.auth-btn.loading{
+
+    opacity:.7;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================
+   ANIMATION
+===================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:768px){
+
+.auth-card{
+
+max-width:100%;
+
+}
+
+.auth-header{
+
+padding:30px 20px;
+
+}
+
+.auth-body{
+
+padding:25px;
+
+}
+
+.auth-header h2{
+
+font-size:26px;
+
+}
+
+.otp-group{
+
+gap:8px;
+
+}
+
+.otp-group input{
+
+width:45px;
+
+height:45px;
+
+font-size:18px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.auth-option{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.social-btn{
+
+font-size:14px;
+
+}
+
+.auth-header img{
+
+width:70px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 9
+   DASHBOARD PELANGGAN
+   Profil • Riwayat • Edit Profil • Status Pesanan
+===================================================== */
+
+
+/* =====================================
+   DASHBOARD WRAPPER
+===================================== */
+
+.customer-dashboard{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:30px;
+
+    padding:50px 0;
+
+}
+
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.customer-sidebar{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+.customer-profile{
+
+    background:linear-gradient(135deg,#ff4f94,#ff79b3);
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+}
+
+
+.customer-profile img{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:4px solid #fff;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+
+.customer-profile h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+}
+
+
+.customer-profile p{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================
+   MENU
+===================================== */
+
+.customer-menu{
+
+    padding:20px;
+
+}
+
+
+.customer-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    text-decoration:none;
+
+    color:#444;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+
+.customer-menu a i{
+
+    width:22px;
+
+    color:#ff4f94;
+
+}
+
+
+.customer-menu a:hover,
+
+.customer-menu a.active{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+.customer-menu a:hover i,
+
+.customer-menu a.active i{
+
+    color:#fff;
+
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.customer-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+/* =====================================
+   CARD
+===================================== */
+
+.customer-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+.customer-card h2{
+
+    color:#ff4f94;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =====================================
+   PROFILE INFO
+===================================== */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+
+.profile-item{
+
+    background:#fff7fa;
+
+    padding:18px;
+
+    border-radius:12px;
+
+}
+
+
+.profile-item label{
+
+    display:block;
+
+    color:#888;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+
+.profile-item span{
+
+    font-weight:bold;
+
+    color:#333;
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.profile-form{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+
+.profile-form label{
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+
+.profile-form input,
+
+.profile-form textarea,
+
+.profile-form select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+.profile-form input:focus,
+
+.profile-form textarea:focus,
+
+.profile-form select:focus{
+
+    border-color:#ff4f94;
+
+    box-shadow:0 0 8px rgba(255,79,148,.2);
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.btn-save{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+
+.btn-save:hover{
+
+    background:#e63d81;
+
+}
+
+
+/* =====================================
+   TABLE
+===================================== */
+
+.customer-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.customer-table th{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:15px;
+
+}
+
+
+.customer-table td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+
+}
+
+
+.customer-table tr:hover{
+
+    background:#fff8fb;
+
+}
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+
+.status.pending{
+
+    background:#ff9800;
+
+}
+
+
+.status.process{
+
+    background:#2196f3;
+
+}
+
+
+.status.success{
+
+    background:#4caf50;
+
+}
+
+
+.status.cancel{
+
+    background:#f44336;
+
+}
+
+
+/* =====================================
+   ORDER CARD
+===================================== */
+
+.order-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fff7fa;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+}
+
+
+.order-info h3{
+
+    color:#333;
+
+    margin-bottom:10px;
+
+}
+
+
+.order-info p{
+
+    color:#777;
+
+}
+
+
+/* =====================================
+   ORDER TOTAL
+===================================== */
+
+.order-price{
+
+    color:#ff4f94;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================
+   HISTORY TIMELINE
+===================================== */
+
+.timeline{
+
+    position:relative;
+
+    padding-left:40px;
+
+}
+
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:10px;
+
+    top:0;
+
+    bottom:0;
+
+    width:4px;
+
+    background:#ffd2e4;
+
+}
+
+
+.timeline-item{
+
+    position:relative;
+
+    margin-bottom:30px;
+
+}
+
+
+.timeline-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-36px;
+
+    top:5px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#ff4f94;
+
+}
+
+
+.timeline-item h4{
+
+    color:#ff4f94;
+
+    margin-bottom:8px;
+
+}
+
+
+.timeline-item p{
+
+    color:#666;
+
+}
+
+
+/* =====================================
+   EMPTY DATA
+===================================== */
+
+.empty-data{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+
+.empty-data img{
+
+    width:180px;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+}
+
+
+.empty-data h3{
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+
+.empty-data p{
+
+    color:#777;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =====================================
+   ALERT
+===================================== */
+
+.alert-success{
+
+    background:#e9fff2;
+
+    color:#198754;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.alert-error{
+
+    background:#ffe8e8;
+
+    color:#dc3545;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+.customer-dashboard{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.profile-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.customer-table{
+
+display:block;
+
+overflow-x:auto;
+
+}
+
+.order-card{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.customer-card{
+
+padding:20px;
+
+}
+
+.customer-profile img{
+
+width:85px;
+
+height:85px;
+
+}
+
+.customer-profile h3{
+
+font-size:20px;
+
+}
+
+}
+
+/* =====================================================
+   ERLISNA FLORIST
+   STYLE.CSS
+   PART 10
+   LIVE CHAT KONSULTASI BUKET
+   (Pelanggan ↔ Admin)
+===================================================== */
+
+
+/* =====================================
+   CHAT PAGE
+===================================== */
+
+.chat-page{
+
+    padding:60px 0;
+
+    background:#fff7fb;
+
+    min-height:100vh;
+
+}
+
+
+/* =====================================
+   WRAPPER
+===================================== */
+
+.chat-wrapper{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:30px;
+
+}
+
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.chat-sidebar{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.chat-sidebar-header{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    padding:25px;
+
+    text-align:center;
+
+}
+
+.chat-sidebar-header h3{
+
+    font-size:24px;
+
+}
+
+.chat-sidebar-header p{
+
+    margin-top:8px;
+
+    opacity:.9;
+
+}
+
+
+/* =====================================
+   CUSTOMER LIST
+===================================== */
+
+.chat-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px 20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    border-bottom:1px solid #f1f1f1;
+
+}
+
+.chat-user:hover{
+
+    background:#fff2f8;
+
+}
+
+.chat-user.active{
+
+    background:#ffe2ef;
+
+}
+
+.chat-user img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.chat-user h4{
+
+    color:#333;
+
+    margin-bottom:4px;
+
+}
+
+.chat-user span{
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================
+   CHAT BOX
+===================================== */
+
+.chat-box{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+/* =====================================
+   CHAT HEADER
+===================================== */
+
+.chat-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:20px 25px;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+.chat-header-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.chat-header-user img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.chat-status{
+
+    color:#d7ffd7;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================
+   CHAT BODY
+===================================== */
+
+.chat-body{
+
+    padding:25px;
+
+    height:500px;
+
+    overflow-y:auto;
+
+    background:#fff8fb;
+
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.message{
+
+    display:flex;
+
+    margin-bottom:18px;
+
+}
+
+.message.admin{
+
+    justify-content:flex-start;
+
+}
+
+.message.customer{
+
+    justify-content:flex-end;
+
+}
+
+
+/* =====================================
+   BUBBLE
+===================================== */
+
+.bubble{
+
+    max-width:70%;
+
+    padding:15px 20px;
+
+    border-radius:18px;
+
+    line-height:1.7;
+
+    position:relative;
+
+}
+
+.message.admin .bubble{
+
+    background:#ffffff;
+
+    border:1px solid #eee;
+
+    border-top-left-radius:5px;
+
+}
+
+.message.customer .bubble{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border-top-right-radius:5px;
+
+}
+
+
+/* =====================================
+   TIME
+===================================== */
+
+.chat-time{
+
+    margin-top:10px;
+
+    font-size:12px;
+
+    opacity:.7;
+
+}
+
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.chat-image{
+
+    width:220px;
+
+    border-radius:15px;
+
+    margin-top:12px;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================
+   FILE
+===================================== */
+
+.chat-file{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:12px;
+
+    background:#fff2f7;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    color:#ff4f94;
+
+    text-decoration:none;
+
+}
+
+
+/* =====================================
+   INPUT AREA
+===================================== */
+
+.chat-footer{
+
+    padding:20px;
+
+    background:#fff;
+
+    border-top:1px solid #eee;
+
+}
+
+.chat-form{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+}
+
+.chat-form input[type=text]{
+
+    flex:1;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:30px;
+
+    outline:none;
+
+}
+
+.chat-form input[type=text]:focus{
+
+    border-color:#ff4f94;
+
+}
+
+
+/* =====================================
+   FILE BUTTON
+===================================== */
+
+.chat-upload{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    background:#ffe3ef;
+
+    color:#ff4f94;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.chat-upload:hover{
+
+    background:#ff4f94;
+
+    color:#fff;
+
+}
+
+
+/* =====================================
+   SEND BUTTON
+===================================== */
+
+.chat-send{
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    background:#ff4f94;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.chat-send:hover{
+
+    background:#e63d81;
+
+    transform:scale(1.08);
+
+}
+
+
+/* =====================================
+   TYPING
+===================================== */
+
+.typing{
+
+    display:flex;
+
+    gap:6px;
+
+    padding:15px 20px;
+
+}
+
+.typing span{
+
+    width:10px;
+
+    height:10px;
+
+    background:#ff4f94;
+
+    border-radius:50%;
+
+    animation:typing .8s infinite;
+
+}
+
+.typing span:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.typing span:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+@keyframes typing{
+
+0%{opacity:.2;}
+
+50%{opacity:1;}
+
+100%{opacity:.2;}
+
+}
+
+
+/* =====================================
+   EMPTY CHAT
+===================================== */
+
+.chat-empty{
+
+    height:500px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.chat-empty img{
+
+    width:220px;
+
+    margin-bottom:25px;
+
+}
+
+.chat-empty h2{
+
+    color:#ff4f94;
+
+    margin-bottom:15px;
+
+}
+
+.chat-empty p{
+
+    color:#777;
+
+}
+
+
+/* =====================================
+   ONLINE
+===================================== */
+
+.online{
+
+    width:12px;
+
+    height:12px;
+
+    background:#35d07f;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    margin-right:6px;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+.chat-wrapper{
+
+grid-template-columns:1fr;
+
+}
+
+.chat-sidebar{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.chat-body{
+
+height:420px;
+
+}
+
+.bubble{
+
+max-width:90%;
+
+}
+
+.chat-form{
+
+flex-wrap:wrap;
+
+}
+
+.chat-form input{
+
+width:100%;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.chat-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.chat-header-user img{
+
+width:45px;
+
+height:45px;
+
+}
+
+.chat-send{
+
+width:48px;
+
+height:48px;
+
+}
+
+.chat-upload{
+
+width:45px;
+
+height:45px;
+
+}
 
 }

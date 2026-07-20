@@ -2,90 +2,224 @@
 session_start();
 include "config/koneksi.php";
 
-$id = $_GET['id'];
+if (!isset($_GET['id'])) {
+    header("Location: produk.php");
+    exit;
+}
+
+$id = intval($_GET['id']);
 
 $query = mysqli_query($koneksi,"
-SELECT *
+SELECT produk.*, kategori.nama_kategori
 FROM produk
+LEFT JOIN kategori
+ON produk.id_kategori=kategori.id_kategori
 WHERE id_produk='$id'
 ");
 
-$p = mysqli_fetch_assoc($query);
+$produk = mysqli_fetch_assoc($query);
+
+if (!$produk) {
+    echo "<script>
+    alert('Produk tidak ditemukan');
+    window.location='produk.php';
+    </script>";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
+
 <head>
-<title><?= $p['nama_bunga']; ?></title>
-<link rel="stylesheet" href="assets/css/style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+<?= $produk['nama_bunga']; ?>
+-
+Erlisna Florist
+</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<?php include "navbar.php"; ?>
+<?php include "includes/header.php"; ?>
 
-<div class="detail-container">
+<section class="detail-section">
+
+<div class="container detail-container">
 
 <div class="detail-image">
 
-<img src="uploads/<?= $p['gambar']; ?>">
+<img
+src="uploads/<?= $produk['gambar']; ?>"
+alt="<?= $produk['nama_bunga']; ?>">
 
 </div>
 
-<div class="detail-content">
+<div class="detail-info">
 
-<h1><?= $p['nama_bunga']; ?></h1>
+<span class="kategori">
 
-<h2>
-Rp <?= number_format($p['harga']); ?>
-</h2>
+<?= $produk['nama_kategori']; ?>
 
-<p>
-<?= nl2br($p['deskripsi']); ?>
+</span>
+
+<h1>
+
+<?= $produk['nama_bunga']; ?>
+
+</h1>
+
+<div class="harga">
+
+Rp <?= number_format($produk['harga'],0,",","."); ?>
+
+</div>
+
+<p class="stok">
+
+<i class="fa fa-box"></i>
+
+Stok :
+
+<b><?= $produk['stok']; ?></b>
+
 </p>
 
-<p>
-<b>Stok :</b>
-<?= $p['stok']; ?>
-</p>
+<div class="deskripsi">
 
-<?php if(isset($_SESSION['id_pelanggan'])){ ?>
+<?= nl2br($produk['deskripsi']); ?>
 
-<form method="POST"
-action="keranjang.php">
+</div>
+
+<form
+action="keranjang.php"
+method="POST">
 
 <input
 type="hidden"
 name="id_produk"
-value="<?= $p['id_produk']; ?>">
+value="<?= $produk['id_produk']; ?>">
 
-<label>Jumlah</label>
+<label>
+
+Jumlah
+
+</label>
 
 <input
 type="number"
 name="jumlah"
 value="1"
 min="1"
-max="<?= $p['stok']; ?>">
+max="<?= $produk['stok']; ?>">
+
+<div class="detail-button">
 
 <button
 type="submit"
-name="beli">
+class="btn-cart">
+
+<i class="fa fa-cart-plus"></i>
 
 Tambah ke Keranjang
 
 </button>
 
-</form>
+<a
+href="checkout.php?id=<?= $produk['id_produk']; ?>"
+class="btn-buy">
 
-<?php }else{ ?>
+<i class="fa fa-credit-card"></i>
 
-<a href="pelanggan/login.php"
-class="btn-login">
-
-Login Untuk Memesan
+Beli Sekarang
 
 </a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRODUK TERKAIT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+Produk Lainnya
+
+</h2>
+
+</div>
+
+<div class="product-grid">
+
+<?php
+
+$related=mysqli_query($koneksi,"
+SELECT *
+FROM produk
+WHERE id_produk!='$id'
+LIMIT 4
+");
+
+while($r=mysqli_fetch_assoc($related)){
+
+?>
+
+<div class="card">
+
+<img
+src="uploads/<?= $r['gambar']; ?>">
+
+<div class="card-body">
+
+<h3>
+
+<?= $r['nama_bunga']; ?>
+
+</h3>
+
+<div class="price">
+
+Rp
+<?= number_format($r['harga'],0,",","."); ?>
+
+</div>
+
+<a
+href="detail.php?id=<?= $r['id_produk']; ?>"
+class="btn-primary">
+
+Lihat Detail
+
+</a>
+
+</div>
+
+</div>
 
 <?php } ?>
 
@@ -93,5 +227,10 @@ Login Untuk Memesan
 
 </div>
 
+</section>
+
+<?php include "includes/footer.php"; ?>
+
 </body>
+
 </html>
