@@ -392,11 +392,6 @@ item.classList.remove("active");
 });
 
 
-
-
-
-
-
 /* =========================
  SMOOTH SCROLL
 ========================= */
@@ -449,3 +444,4 @@ behavior:"smooth"
 </body>
 
 </html>
+
