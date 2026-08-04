@@ -1,9 +1,24 @@
 <?php
+session_start();
 include "../config/koneksi.php";
 
 if(isset($_POST['daftar'])){
 
+$nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
+$email = mysqli_real_escape_string($koneksi, $_POST['email']);
+$alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);
+$telepon = mysqli_real_escape_string($koneksi, $_POST['telepon']);
 $password = md5($_POST['password']);
+
+// Cek email duplikat
+$cek = mysqli_query($koneksi, "SELECT id_pelanggan FROM pelanggan WHERE email='$email'");
+if(mysqli_num_rows($cek) > 0){
+    echo "<script>
+    alert('Email sudah terdaftar. Silakan gunakan email lain.');
+    history.back();
+    </script>";
+    exit;
+}
 
 mysqli_query($koneksi,"
 INSERT INTO pelanggan(
@@ -14,11 +29,11 @@ alamat,
 telepon
 )
 VALUES(
-'$_POST[nama]',
-'$_POST[email]',
+'$nama',
+'$email',
 '$password',
-'$_POST[alamat]',
-'$_POST[telepon]'
+'$alamat',
+'$telepon'
 )
 ");
 

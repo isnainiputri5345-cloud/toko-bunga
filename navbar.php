@@ -50,28 +50,28 @@ Semua Produk
 </a>
 
 
-<a href="<?= $base_root; ?>produk.php?kategori=buket_bunga_asli">
+<a href="<?= $base_root; ?>produk.php?kategori=1">
 Buket Bunga Asli
 </a>
 
 
-<a href="<?= $base_root; ?>produk.php?kategori=buket_rajut">
-Buket Bunga Rajut
-</a>
-
-
-<a href="<?= $base_root; ?>produk.php?kategori=buket_wisuda">
+<a href="<?= $base_root; ?>produk.php?kategori=2">
 Buket Wisuda
 </a>
 
 
-<a href="<?= $base_root; ?>produk.php?kategori=buket_ultah">
+<a href="<?= $base_root; ?>produk.php?kategori=3">
 Buket Ulang Tahun
 </a>
 
 
-<a href="<?= $base_root; ?>produk.php?kategori=buket_pita">
-Buket Dengan Pita
+<a href="<?= $base_root; ?>produk.php?kategori=4">
+Buket Rajut
+</a>
+
+
+<a href="<?= $base_root; ?>produk.php?kategori=5">
+Papan Bunga
 </a>
 
 
@@ -100,7 +100,7 @@ Pesanan Saya
 </a>
 
 
-<a href="<?= $base_root; ?>chat.php">
+<a href="<?= $base_pelanggan; ?>chat.php">
 💬 Konsultasi Buket
 </a>
 
@@ -131,7 +131,7 @@ Pesanan Saya
 </a>
 
 
-<a href="<?= $base_pelanggan; ?>edit_profile.php">
+<a href="<?= $base_pelanggan; ?>edit_profil.php">
 ✏ Edit Profil
 </a>
 

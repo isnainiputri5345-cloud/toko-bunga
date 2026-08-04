@@ -259,8 +259,8 @@ body {
         exit;
     }
 
-    // Ambil data pesanan
-    $pesanan = mysqli_query($koneksi, "SELECT * FROM pesanan WHERE id_pesanan='$id_pesanan' AND id_pelanggan='$id'");
+// Ambil data pesanan
+    $pesanan = mysqli_query($koneksi, "SELECT pesanan.*, pelanggan.alamat FROM pesanan JOIN pelanggan ON pesanan.id_pelanggan=pelanggan.id_pelanggan WHERE pesanan.id_pesanan='$id_pesanan' AND pesanan.id_pelanggan='$id'");
     if(mysqli_num_rows($pesanan) == 0){
         echo "<div class='empty-state'>";
         echo "<div class='empty-state-icon'>🔍</div>";
@@ -317,9 +317,9 @@ body {
             <span class="summary-label">Tanggal Pesanan</span>
             <span class="summary-value"><?= date('d/m/Y H:i', strtotime($p['tanggal'])); ?></span>
         </div>
-        <div class="summary-row">
+<div class="summary-row">
             <span class="summary-label">Alamat Pengiriman</span>
-            <span class="summary-value"><?= $p['alamat_pengiriman']; ?></span>
+            <span class="summary-value"><?= $p['alamat'] ?? 'Alamat Kosong'; ?></span>
         </div>
         <div class="summary-row summary-total">
             <span class="summary-label">Total Pembayaran</span>

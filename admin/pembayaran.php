@@ -129,7 +129,7 @@ SELECT
 
 pembayaran.*,
 
-pesanan.total_harga,
+pesanan.total,
 
 pesanan.id_pesanan,
 
@@ -191,7 +191,7 @@ while($d=mysqli_fetch_assoc($data)){
 <td>
 
 Rp <?= number_format(
-$d['total_harga'],
+$d['total'],
 0,
 ",",
 "."
@@ -217,7 +217,7 @@ $d['total_harga'],
 <?php if($d['bukti_pembayaran']){ ?>
 
 
-<a href="../uploads/pembayaran/<?= $d['bukti_pembayaran']; ?>"
+<a href="../uploads/bukti/<?= $d['bukti_pembayaran']; ?>"
 target="_blank">
 
 Lihat Bukti

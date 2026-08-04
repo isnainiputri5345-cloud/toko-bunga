@@ -168,7 +168,7 @@ Hubungi Kami
 
 <i class="fa-solid fa-location-dot"></i>
 
-Jl. Raya Denpasar, Bali
+Jl. Pelor Mas Raya No.III, Kekalik Jaya, Sekarbela, Mataram, NTB
 
 </p>
 
@@ -179,7 +179,7 @@ Jl. Raya Denpasar, Bali
 
 <i class="fa-solid fa-phone"></i>
 
-0812-3456-7890
+0819-4671-6865
 
 </p>
 

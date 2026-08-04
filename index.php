@@ -151,7 +151,7 @@ Koleksi bunga pilihan Erlisna Florist
 
 
 <img 
-src="assets/images/<?= 
+src="uploads/<?= 
 !empty($p['gambar'])
 ?
 $p['gambar']
@@ -199,7 +199,7 @@ $p['harga'],
 
 
 
-<a href="detail_produk.php?id=
+<a href="detail.php?id=
 <?= $p['id_produk']; ?>"
 class="btn-primary">
 
@@ -441,7 +441,7 @@ Pilihan pelanggan Erlisna Florist
 <div class="card">
 
 
-<img src="assets/images/<?= $p['gambar']; ?>">
+<img src="uploads/<?= $p['gambar']; ?>">
 
 
 
@@ -471,7 +471,7 @@ $p['harga'],
 
 
 
-<a href="detail_produk.php?id=
+<a href="detail.php?id=
 <?= $p['id_produk']; ?>"
 class="btn-primary">
 
@@ -559,7 +559,7 @@ Erlisna Florist
 
 
 
-<img src="assets/images/<?= $p['gambar']; ?>">
+<img src="uploads/<?= $p['gambar']; ?>">
 
 
 
@@ -608,7 +608,7 @@ $p['harga'],
 
 
 
-<a href="detail_produk.php?id=
+<a href="detail.php?id=
 <?= $p['id_produk']; ?>"
 class="btn-primary">
 
@@ -750,11 +750,11 @@ hasil bouquet sangat bagus."
 <div class="testimonial">
 
 
-<img src="assets/images/user3.jpg">
+<img src="assets/images/erlan.jpeg">
 
 
 <h3>
-Dewi Ayu
+Erlangga
 </h3>
 
 
@@ -958,25 +958,19 @@ Erlisna Florist?
 
 <div class="section-title">
 
-
 <h2>
 Hubungi Kami
 </h2>
-
 
 <p>
 Kami siap membantu pesanan Anda
 </p>
 
-
 </div>
 
 
 
-
-<div class="product-grid">
-
-
+<div class="contact-grid">
 
 <div class="contact-box">
 
@@ -987,9 +981,9 @@ Kami siap membantu pesanan Anda
 
 
 <p>
-Jl. Raya Denpasar No.123
+Jl. Pelor Mas Raya No.III, Kekalik Jaya, Kec. Sekarbela, Kota Mataram, Nusa Tenggara Bar. 83126
 <br>
-Denpasar, Bali
+Mataram, NTB
 </p>
 
 
@@ -1007,7 +1001,7 @@ Denpasar, Bali
 
 
 <p>
-0812-3456-7890
+0819-4671-6865
 </p>
 
 
@@ -1057,7 +1051,7 @@ erlisnaflorist@gmail.com
 
 <iframe
 
-src="https://www.google.com/maps/embed?pb=!1m18"
+src="https://maps.app.goo.gl/25hwqBw3evGNmRGZ7"
 
 loading="lazy">
 
