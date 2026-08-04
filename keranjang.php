@@ -20,7 +20,7 @@ if(!isset($_SESSION['keranjang'])){
 TAMBAH PRODUK KE KERANJANG
 =================================*/
 
-if(isset($_POST['beli'])){
+if(isset($_POST['beli']) || isset($_POST['tambah'])){
 
 
     $id_produk = intval($_POST['id_produk']);
@@ -47,6 +47,16 @@ if(isset($_POST['beli'])){
 
         $_SESSION['keranjang'][$id_produk] = $jumlah;
 
+
+    }
+
+
+
+    // jika tombol "Beli Sekarang" -> langsung checkout
+    if(isset($_POST['beli'])){
+
+        header("Location: checkout.php");
+        exit;
 
     }
 

@@ -234,7 +234,7 @@ Profil Saya
 
 </a>
 
-<a href="<?= $base_root ?>pelanggan/edit_profile.php">
+<a href="<?= $base_root ?>pelanggan/edit_profil.php">
 
 Edit Profil
 

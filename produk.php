@@ -569,7 +569,7 @@ Stok :
 
 <a
 
-href="detail_produk.php?id=<?= $p['id_produk']; ?>"
+href="detail.php?id=<?= $p['id_produk']; ?>"
 
 class="btn-detail">
 

@@ -3,503 +3,432 @@ session_start();
 
 include "config/koneksi.php";
 
+/*=========================================
+  CEK LOGIN
+=========================================*/
 
-/* ==============================
-CEK LOGIN
-============================== */
-
-if(!isset($_SESSION['id_pelanggan'])){
+if (!isset($_SESSION['id_pelanggan'])) {
 
     header("Location: pelanggan/login.php");
     exit;
 
 }
 
-
 $id_pelanggan = $_SESSION['id_pelanggan'];
 
 
+/*=========================================
+  AMBIL DATA PELANGGAN
+=========================================*/
 
-/* ==============================
-DATA PELANGGAN
-============================== */
-
-$data=mysqli_query($koneksi,"
+$queryPelanggan = mysqli_query($koneksi, "
 SELECT *
 FROM pelanggan
 WHERE id_pelanggan='$id_pelanggan'
 ");
 
-
-$pelanggan=mysqli_fetch_assoc($data);
-
+$pelanggan = mysqli_fetch_assoc($queryPelanggan);
 
 
-/* ==============================
-HITUNG TOTAL
-============================== */
+/*=========================================
+  CEK KERANJANG
+=========================================*/
 
+if (
+    !isset($_SESSION['keranjang']) ||
+    count($_SESSION['keranjang']) == 0
+) {
 
-$total=0;
-
-
-$produk_checkout=[];
-
-
-if(isset($_SESSION['keranjang'])){
-
-
-foreach($_SESSION['keranjang'] as $id_produk=>$jumlah){
-
-
-
-$query=mysqli_query($koneksi,"
-SELECT *
-FROM produk
-WHERE id_produk='$id_produk'
-");
-
-
-$produk=mysqli_fetch_assoc($query);
-
-
-
-if($produk){
-
-
-$subtotal=$produk['harga']*$jumlah;
-
-
-$total += $subtotal;
-
-
-
-$produk_checkout[]=[
-
-"data"=>$produk,
-
-"jumlah"=>$jumlah,
-
-"subtotal"=>$subtotal
-
-];
-
+    header("Location: keranjang.php");
+    exit;
 
 }
 
 
-}
+/*=========================================
+  AMBIL DATA PRODUK
+=========================================*/
 
+$produk_checkout = [];
 
-}
+$total = 0;
 
+foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) {
 
+    $queryProduk = mysqli_query($koneksi, "
+    SELECT *
+    FROM produk
+    WHERE id_produk='$id_produk'
+    ");
 
+    if (mysqli_num_rows($queryProduk) > 0) {
 
-/* ==============================
-PROSES CHECKOUT
-============================== */
+        $produk = mysqli_fetch_assoc($queryProduk);
 
+        $subtotal = $produk['harga'] * $jumlah;
 
-if(isset($_POST['checkout'])){
+        $total += $subtotal;
 
+        $produk_checkout[] = [
 
-$tanggal=date("Y-m-d H:i:s");
+            "id_produk" => $produk['id_produk'],
 
+            "nama_bunga" => $produk['nama_bunga'],
 
+            "harga" => $produk['harga'],
 
-mysqli_query($koneksi,"
-INSERT INTO pesanan
+            "gambar" => $produk['gambar'],
 
-(
-id_pelanggan,
-tanggal,
-total,
-status
+            "jumlah" => $jumlah,
 
-)
+            "subtotal" => $subtotal
 
-VALUES
+        ];
 
-(
-'$id_pelanggan',
-'$tanggal',
-'$total',
-'Menunggu'
-
-)
-
-");
-
-
-
-$id_pesanan=mysqli_insert_id($koneksi);
-
-
-
-foreach($produk_checkout as $item){
-
-
-
-$id_produk=$item['data']['id_produk'];
-
-$jumlah=$item['jumlah'];
-
-$subtotal=$item['subtotal'];
-
-
-
-mysqli_query($koneksi,"
-INSERT INTO detail_pesanan
-
-(
-id_pesanan,
-id_produk,
-jumlah,
-subtotal
-
-)
-
-VALUES
-
-(
-'$id_pesanan',
-'$id_produk',
-'$jumlah',
-'$subtotal'
-
-)
-
-");
-
+    }
 
 }
 
 
+/*=========================================
+  PROSES CHECKOUT
+=========================================*/
 
-unset($_SESSION['keranjang']);
+if (isset($_POST['checkout'])) {
+
+    date_default_timezone_set("Asia/Jakarta");
+
+    $tanggal = date("Y-m-d H:i:s");
+
+$status = "Menunggu";
+
+$tanggal_pesan = date("Y-m-d");
+
+    mysqli_query($koneksi, "
+    INSERT INTO pesanan
+    (
+        id_pelanggan,
+        tanggal,
+        total,
+        status,
+        tanggal_pesan,
+        total_harga
+    )
+
+    VALUES
+    (
+        '$id_pelanggan',
+        '$tanggal',
+        '$total',
+        '$status',
+        '$tanggal_pesan',
+        '$total'
+    )
+    ");
+
+    $id_pesanan = mysqli_insert_id($koneksi);
 
 
+    /*=====================================
+      SIMPAN DETAIL PESANAN
+    =====================================*/
 
-header("Location: selesai.php");
+    foreach ($produk_checkout as $item) {
 
-exit;
+        $id_produk = $item['id_produk'];
 
+        $jumlah = $item['jumlah'];
+
+        $subtotal = $item['subtotal'];
+
+        mysqli_query($koneksi, "
+        INSERT INTO detail_pesanan
+        (
+            id_pesanan,
+            id_produk,
+            jumlah,
+            subtotal
+        )
+
+        VALUES
+        (
+            '$id_pesanan',
+            '$id_produk',
+            '$jumlah',
+            '$subtotal'
+        )
+        ");
+
+    }
+
+
+    /*=====================================
+      HAPUS KERANJANG
+    =====================================*/
+
+    unset($_SESSION['keranjang']);
+
+
+    /*=====================================
+      PINDAH KE KONFIRMASI PEMBAYARAN
+    =====================================*/
+
+    header("Location: konfirmasi_pembayaran.php?id=".$id_pesanan);
+
+    exit;
 
 }
-
-
 ?>
 
-
-
 <!DOCTYPE html>
-
 <html lang="id">
-
 
 <head>
 
-
 <meta charset="UTF-8">
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>
-Checkout | Erlisna Florist
-</title>
-
-
+<title>Checkout | Erlisna Florist</title>
 
 <link rel="stylesheet" href="assets/css/style.css">
-
-
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-
 </head>
-
-
 
 <body>
 
-
-
 <?php include "includes/header.php"; ?>
-
-
-
 
 <section class="page-header">
 
-
 <div class="container">
-
 
 <h1>
 
-<i class="fa fa-shopping-bag"></i>
+<i class="fa-solid fa-bag-shopping"></i>
 
-Form Checkout Pesanan
+Checkout Pesanan
 
 </h1>
 
-
 <p>
 
-Lengkapi data pemesanan bunga Anda
+Periksa kembali pesanan Anda sebelum melanjutkan ke pembayaran.
 
 </p>
 
-
 </div>
-
 
 </section>
 
-
-
-
-
-
-<div class="checkout-container">
-
-
+<div class="container">
 
 <form method="POST" class="checkout-form">
 
+<div class="checkout-left">
 
-
-
-
-<!-- DATA PEMBELI -->
-
+<!-- ===========================
+DATA PEMBELI
+=========================== -->
 
 <div class="checkout-card">
 
-
 <h2>
 
-<i class="fa fa-user"></i>
+<i class="fa-solid fa-user"></i>
 
 Data Pembeli
 
 </h2>
 
+<div class="form-group">
 
-
-<label>
-
-Nama Lengkap
-
-</label>
-
-
-<input 
-type="text"
-value="<?= $pelanggan['nama']; ?>"
-readonly>
-
-
-
-
-<label>
-
-Nomor Telepon
-
-</label>
-
+<label>Nama Lengkap</label>
 
 <input
-
 type="text"
-
-value="<?= $pelanggan['telepon']; ?>"
-
+value="<?= htmlspecialchars($pelanggan['nama']); ?>"
 readonly>
-
-
-
-
-<label>
-
-Alamat Pengiriman
-
-</label>
-
-
-<textarea readonly>
-
-<?= $pelanggan['alamat']; ?>
-
-</textarea>
-
-
 
 </div>
 
+<div class="form-group">
 
+<label>Nomor Telepon</label>
 
+<input
+type="text"
+value="<?= htmlspecialchars($pelanggan['telepon']); ?>"
+readonly>
 
+</div>
 
+<div class="form-group">
 
+<label>Alamat Pengiriman</label>
 
-<!-- DETAIL PRODUK -->
+<textarea rows="4" readonly><?= htmlspecialchars($pelanggan['alamat']); ?></textarea>
 
+</div>
+
+</div>
+
+<!-- ===========================
+DETAIL PESANAN
+=========================== -->
 
 <div class="checkout-card">
 
-
 <h2>
 
-<i class="fa fa-flower"></i>
+<i class="fa-solid fa-cart-shopping"></i>
 
 Detail Pesanan
 
 </h2>
 
-
-
 <?php foreach($produk_checkout as $item){ ?>
-
 
 <div class="checkout-product">
 
-
+<div class="checkout-image">
 
 <img
+src="uploads/<?= htmlspecialchars($item['gambar']); ?>"
+alt="<?= htmlspecialchars($item['nama_bunga']); ?>">
 
-src="uploads/<?= $item['data']['gambar']; ?>"
+</div>
 
->
+<div class="checkout-info">
 
+<h3>
 
+<?= htmlspecialchars($item['nama_bunga']); ?>
 
-<div>
+</h3>
 
+<p>
 
-<h4>
+Harga :
 
-<?= $item['data']['nama_bunga']; ?>
+<strong>
 
-</h4>
+Rp <?= number_format($item['harga'],0,",","."); ?>
 
+</strong>
 
+</p>
 
 <p>
 
 Jumlah :
+
+<strong>
+
 <?= $item['jumlah']; ?>
 
-</p>
+</strong>
 
+</p>
 
 <p>
 
-Rp <?= number_format(
-$item['subtotal'],
-0,
-",",
-"."
-); ?>
+Subtotal :
+
+<strong class="subtotal">
+
+Rp <?= number_format($item['subtotal'],0,",","."); ?>
+
+</strong>
 
 </p>
 
-
+</div>
 
 </div>
 
-
-
-</div>
-
-
+<hr>
 
 <?php } ?>
 
-
-
+</div>
 
 </div>
 
+<!-- ===========================
+RINGKASAN BELANJA
+=========================== -->
 
-
-
-
-
-
-<!-- TOTAL -->
-
+<div class="checkout-right">
 
 <div class="checkout-card total-box">
 
-
 <h2>
 
-Total Pembayaran
+Ringkasan Belanja
 
 </h2>
 
+<div class="summary-item">
 
+<span>Total Produk</span>
 
-<h1>
+<strong>
 
-Rp <?= number_format(
-$total,
-0,
-",",
-"."
-); ?>
+<?= count($produk_checkout); ?>
 
-</h1>
+Item
 
+</strong>
 
+</div>
+
+<div class="summary-item">
+
+<span>Total Pembayaran</span>
+
+<strong class="grand-total">
+
+Rp <?= number_format($total,0,",","."); ?>
+
+</strong>
+
+</div>
+
+<p class="checkout-note">
+
+Setelah menekan tombol <b>Buat Pesanan</b>,
+Anda akan diarahkan ke halaman
+<strong>Konfirmasi Pembayaran</strong>
+untuk memilih metode pembayaran
+dan mengunggah bukti transfer.
+
+</p>
 
 <button
-
 type="submit"
-
 name="checkout"
-
 class="btn-checkout">
 
-
-<i class="fa fa-check"></i>
-
+<i class="fa-solid fa-check"></i>
 
 Buat Pesanan
 
-
 </button>
-
-
 
 </div>
 
-
-
-
+</div>
 
 </form>
 
-
-
 </div>
-
-
-
-
-
 
 <?php include "includes/footer.php"; ?>
 
-
-
 </body>
-
 
 </html>

@@ -249,10 +249,10 @@ body {
 
         if(mysqli_num_rows($data) > 0){
             while($d=mysqli_fetch_assoc($data)){
-                $status_class = 'status-pending';
+$status_class = 'status-pending';
                 if($d['status'] == 'Diproses') $status_class = 'status-processing';
                 if($d['status'] == 'Selesai') $status_class = 'status-completed';
-                if($d['status'] == 'Batal') $status_class = 'status-cancelled';
+                if($d['status'] == 'Dibatalkan' || $d['status'] == 'Batal') $status_class = 'status-cancelled';
         ?>
             <div class="order-card">
                 <div class="order-header">

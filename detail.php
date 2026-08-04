@@ -130,6 +130,7 @@ max="<?= $produk['stok']; ?>">
 
 <button
 type="submit"
+name="tambah"
 class="btn-cart">
 
 <i class="fa fa-cart-plus"></i>
@@ -138,15 +139,16 @@ Tambah ke Keranjang
 
 </button>
 
-<a
-href="checkout.php?id=<?= $produk['id_produk']; ?>"
+<button
+type="submit"
+name="beli"
 class="btn-buy">
 
 <i class="fa fa-credit-card"></i>
 
 Beli Sekarang
 
-</a>
+</button>
 
 </div>
 

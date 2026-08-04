@@ -78,20 +78,19 @@ $query=mysqli_query($koneksi,
 
 
 "
-SELECT SUM(total_harga) AS total
+SELECT SUM(total) AS total
 
 FROM pesanan
 
-WHERE MONTH(tanggal_pesan)='$i'
+WHERE MONTH(tanggal)='$i'
 
-AND tanggal_pesan
+AND tanggal
 
 BETWEEN '$tanggal_awal'
 
 AND '$tanggal_akhir'
 
 "
-
 );
 
 
@@ -132,18 +131,17 @@ $get_total=mysqli_query($koneksi,
 
 
 "
-SELECT SUM(total_harga) AS total
+SELECT SUM(total) AS total
 
 FROM pesanan
 
-WHERE tanggal_pesan
+WHERE tanggal
 
 BETWEEN '$tanggal_awal'
 
 AND '$tanggal_akhir'
 
 "
-
 );
 
 
@@ -171,14 +169,13 @@ SELECT COUNT(*) AS jumlah
 
 FROM pesanan
 
-WHERE tanggal_pesan
+WHERE tanggal
 
 BETWEEN '$tanggal_awal'
 
 AND '$tanggal_akhir'
 
 "
-
 );
 
 
@@ -201,8 +198,8 @@ $detail_pesanan=mysqli_query($koneksi,
 SELECT
 
 pesanan.id_pesanan,
-pesanan.tanggal_pesan,
-pesanan.total_harga,
+pesanan.tanggal,
+pesanan.total,
 pesanan.status,
 
 pelanggan.nama
@@ -217,7 +214,7 @@ ON pesanan.id_pelanggan =
 pelanggan.id_pelanggan
 
 
-WHERE pesanan.tanggal_pesan
+WHERE pesanan.tanggal
 
 BETWEEN '$tanggal_awal'
 
@@ -227,7 +224,6 @@ AND '$tanggal_akhir'
 ORDER BY id_pesanan DESC
 
 "
-
 );
 
 
@@ -486,7 +482,7 @@ while($row=mysqli_fetch_assoc($detail_pesanan)){
 <td>
 <?= date(
 "d-m-Y",
-strtotime($row['tanggal_pesan'])
+strtotime($row['tanggal'])
 ); ?>
 </td>
 
@@ -494,7 +490,7 @@ strtotime($row['tanggal_pesan'])
 <td>
 
 Rp <?= number_format(
-$row['total_harga'],
+$row['total'],
 0,
 ",",
 "."

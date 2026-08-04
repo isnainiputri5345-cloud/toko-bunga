@@ -5,13 +5,13 @@ session_start();
 include "../config/koneksi.php";
 
 
-if(!isset($_SESSION['pelanggan'])){
+if(!isset($_SESSION['id_pelanggan'])){
 header("Location:login.php");
 exit;
 }
 
 
-$id_pelanggan=$_SESSION['pelanggan'];
+$id_pelanggan=$_SESSION['id_pelanggan'];
 
 
 

@@ -145,8 +145,8 @@ $data=mysqli_query($koneksi,
 SELECT
 
 pesanan.id_pesanan,
-pesanan.tanggal_pesan,
-pesanan.total_harga,
+pesanan.tanggal,
+pesanan.total,
 pesanan.status,
 
 pelanggan.nama
@@ -164,7 +164,6 @@ pelanggan.id_pelanggan
 ORDER BY pesanan.id_pesanan DESC
 
 "
-
 );
 
 
@@ -205,7 +204,7 @@ while($d=mysqli_fetch_assoc($data)){
 
 <?= date(
 "d-m-Y",
-strtotime($d['tanggal_pesan'])
+strtotime($d['tanggal'])
 ); ?>
 
 
@@ -214,11 +213,10 @@ strtotime($d['tanggal_pesan'])
 
 
 
-
 <td>
 
 Rp <?= number_format(
-$d['total_harga'],
+$d['total'],
 0,
 ",",
 "."
@@ -280,6 +278,30 @@ Diproses
 >
 
 Selesai
+
+</option>
+
+
+
+<option value="Dikirim"
+
+<?= ($d['status']=="Dikirim")?'selected':''; ?>
+
+>
+
+Dikirim
+
+</option>
+
+
+
+<option value="Dibatalkan"
+
+<?= ($d['status']=="Dibatalkan")?'selected':''; ?>
+
+>
+
+Dibatalkan
 
 </option>
 
