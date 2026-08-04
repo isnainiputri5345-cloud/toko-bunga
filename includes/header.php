@@ -246,6 +246,12 @@ Pesanan Saya
 
 </a>
 
+<a href="<?= $base_root ?>pelanggan/chat.php">
+
+💬 Konsultasi Buket
+
+</a>
+
 <hr>
 
 <a class="logout"
